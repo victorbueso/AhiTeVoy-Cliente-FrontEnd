@@ -1,0 +1,144 @@
+/*.menu-header {
+  padding: 10px 10px;
+  float: left;
+}
+
+nav {
+  float: right,
+}
+
+nav ul li button{
+  display: inline-block;
+  padding: 15px 25px;
+} */
+
+.menu-header a {
+  margin-left: 80px;
+  text-decoration: none;
+  color: black;
+}
+
+span button{
+  margin-right: auto !important;
+}
+
+.hover-button-login {
+  color: #003049 !important;
+  background-color: #F7F7FF !important;
+  border-color: #003049 !important;
+}
+
+.hover-button-login:hover {
+  color: #F7F7FF !important;
+  background-color: #003049 !important;
+  border-color: #003049 !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Open Sans, sans-serif;
+}
+
+.bg-light{
+  background-color: #F7F7FF !important;
+}
+
+#inicio {
+  display: inline-block;
+  width: 100%;
+  padding: 25px 80px;
+  position: relative;
+}
+
+.title {
+  color: #003049 !important;
+  margin-top: 25vh !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center;
+}
+
+.subtitle {
+  color: #D62828 !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center;
+}
+
+.subtitle-finish {
+  text-align: center;
+  margin-top: 100px;
+}
+
+fa-icon {
+  margin: 15px auto;
+  font-size: 50px;
+  color: #003049;
+}
+
+.card {
+  background-color: #EAE2B7;
+  border-radius: 20px;
+  width: 31%;
+  height: 280px;
+  font-size: 1.2rem;
+}
+
+.text-card {
+  color: #003049;
+  text-align: center;
+}
+
+section img {
+  border-radius: 20px;
+}
+
+.img-delivery-lp{
+  margin:auto auto;
+  border-radius:5px;
+  border: 1px solid #999;
+  padding:13px;
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+.img-delivery-lp img{
+  width: 100%;
+}
+
+.img-comfortable-lp {
+  border-radius:5px;
+  border: 1px solid #999;
+  padding:13px;
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+.experience-lp img{
+  border-radius: 300px;
+  margin-left: 15px !important;
+}
+
+.some-experience {
+  color: #003049;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+
+@media all and (min-width: 500px) and (max-width: 1000px) {
+  .img-delivery-lp {
+    margin:auto auto;
+    border-radius:5px;
+    border: 1px solid #999;
+    padding:13px;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background-size: cover;
+  }
+}
