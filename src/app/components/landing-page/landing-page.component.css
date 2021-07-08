@@ -53,6 +53,10 @@ body {
   position: relative;
 }
 
+.first-text-lp {
+  margin-top: 0;
+}
+
 .title {
   color: #003049 !important;
   margin-top: 25vh !important;
@@ -66,11 +70,6 @@ body {
   margin-right: auto !important;
   margin-left: auto !important;
   text-align: center;
-}
-
-.subtitle-finish {
-  text-align: center;
-  margin-top: 100px;
 }
 
 fa-icon {
@@ -99,7 +98,6 @@ section img {
 .img-delivery-lp{
   margin:auto auto;
   border-radius:5px;
-  border: 1px solid #999;
   padding:13px;
   background-size: 100% 100%;
   background-repeat:no-repeat;
@@ -110,7 +108,13 @@ section img {
   width: 100%;
 }
 
-.img-comfortable-lp {
+.subtitle-finish {
+  text-align: center;
+  margin-top: 100px;
+}
+
+/*.img-comfortable-lp {
+  margin: auto auto;
   border-radius:5px;
   border: 1px solid #999;
   padding:13px;
@@ -118,6 +122,10 @@ section img {
   background-repeat:no-repeat;
   background-size: cover;
 }
+
+.img-comfortable-lp img {
+  width: 100%;
+}*/
 
 .experience-lp img{
   border-radius: 300px;
@@ -130,15 +138,74 @@ section img {
   margin-bottom: 100px;
 }
 
+.input-error{
+  border: 2px solid red;
+}
+
+.nav-item {
+  color: black !important;
+}
+
+footer {
+  background-color: #003049;
+}
+
+.text-footer {
+  text-decoration: none !important;
+  color: #F7F7FF !important;
+  cursor: pointer;
+}
+
+.text-footer:hover {
+  text-decoration: underline !important;
+}
 
 @media all and (min-width: 500px) and (max-width: 1000px) {
-  .img-delivery-lp {
+  .img-delivery-lp img-comfortable-lp{
     margin:auto auto;
     border-radius:5px;
-    border: 1px solid #999;
     padding:13px;
     background-size: 100% 100%;
     background-repeat:no-repeat;
     background-size: cover;
+    margin-bottom: 40px !important;
   }
+
+  #nav-lp {
+    z-index: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  section {
+    margin-top: 0 !important;
+  }
+}
+
+@media all and (min-width: 992px) and (max-width: 1200px) {
+  .nav-queries {
+    display: none !important;
+  }
+
+  .navbar navbar-expand-lg navbar-light bg-light {
+    display: flex !important;
+  }
+
+  /*#navbarSupportedContent {
+    display: flex !important;
+    position: absolute !important;
+    transform: translatex(-50) !important;
+    justify-content: center !important;
+    margin-top: 0px !important;
+    margin-left: 80px !important;
+  }
+
+ .navbar-nav {
+   text-align: center !important;
+ }
+
+ .nav-item {
+   display: inline-block !important;
+ }*/
 }
