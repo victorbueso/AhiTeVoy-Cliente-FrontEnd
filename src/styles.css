@@ -1,7 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Product Sans Bold';
+  src: url('fonts/Product Sans Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Product Sans Regular';
+  src: url('fonts/Product Sans Regular.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Product Sans Bold' !important;
+}
+
+p, body, nav, main, strong {
+  font-family: 'Roboto', sans-serif !important;
+}
+
 body {
   background-color: #F7F7FF !important;
 }
-
 
 

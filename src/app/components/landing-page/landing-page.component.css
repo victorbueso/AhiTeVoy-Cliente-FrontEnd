@@ -1,16 +1,10 @@
-/*.menu-header {
-  padding: 10px 10px;
-  float: left;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Open Sans, sans-serif;
 }
-
-nav {
-  float: right,
-}
-
-nav ul li button{
-  display: inline-block;
-  padding: 15px 25px;
-} */
 
 .menu-header a {
   margin-left: 80px;
@@ -23,24 +17,21 @@ span button{
 }
 
 .hover-button-login {
+  color: #F7F7FF !important;
+  background-color: #003049 !important;
+  border-color: #F7F7FF !important;
+}
+
+.hover-button-login:hover {
   color: #003049 !important;
   background-color: #F7F7FF !important;
   border-color: #003049 !important;
 }
 
-.hover-button-login:hover {
-  color: #F7F7FF !important;
-  background-color: #003049 !important;
-  border-color: #003049 !important;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  font-family: Open Sans, sans-serif;
-}
+/*#r-modal {
+  width: 50vw !important;
+  margin: 0 !important;
+}*/
 
 .bg-light{
   background-color: #F7F7FF !important;
@@ -59,9 +50,10 @@ body {
 
 .title {
   color: #003049 !important;
-  margin-top: 25vh !important;
+  margin-top: 20vh !important;
   margin-right: auto !important;
   margin-left: auto !important;
+  margin-top: 15vh !important;
   text-align: center;
 }
 
@@ -78,21 +70,52 @@ fa-icon {
   color: #003049;
 }
 
+.error{
+  padding: 5px;
+  margin:5px;
+  margin-top: 0px;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: red;
+}
+
+.input-error{
+    border: 2px solid red;
+}
+
 .card {
   background-color: #EAE2B7;
   border-radius: 20px;
-  width: 31%;
-  height: 280px;
-  font-size: 1.2rem;
+  width: 300px;
+  height: 270px;
 }
 
 .text-card {
   color: #003049;
   text-align: center;
+  font-size: 1.15rem;
+}
+
+.h-card {
+  color: #003049;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 section img {
   border-radius: 20px;
+}
+
+#button-lp {
+  background-color: #F7F7FF !important;
+  color: #003049 !important;
+  border-color: #003049 !important;
+}
+
+#button-lp:hover {
+  background-color: #003049 !important;
+  color: #F7F7FF !important;
+  border-color: #003049 !important;
 }
 
 .img-delivery-lp{
@@ -113,20 +136,6 @@ section img {
   margin-top: 100px;
 }
 
-/*.img-comfortable-lp {
-  margin: auto auto;
-  border-radius:5px;
-  border: 1px solid #999;
-  padding:13px;
-  background-size: 100% 100%;
-  background-repeat:no-repeat;
-  background-size: cover;
-}
-
-.img-comfortable-lp img {
-  width: 100%;
-}*/
-
 .experience-lp img{
   border-radius: 300px;
   margin-left: 15px !important;
@@ -135,7 +144,7 @@ section img {
 .some-experience {
   color: #003049;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .input-error{
@@ -150,6 +159,10 @@ footer {
   background-color: #003049;
 }
 
+.logo-end {
+  margin-top: 0;
+}
+
 .text-footer {
   text-decoration: none !important;
   color: #F7F7FF !important;
@@ -160,7 +173,7 @@ footer {
   text-decoration: underline !important;
 }
 
-@media all and (min-width: 500px) and (max-width: 1000px) {
+@media all and (min-width: 200px) and (max-width: 700px) {
   .img-delivery-lp img-comfortable-lp{
     margin:auto auto;
     border-radius:5px;
@@ -169,6 +182,13 @@ footer {
     background-repeat:no-repeat;
     background-size: cover;
     margin-bottom: 40px !important;
+  }
+
+  .logo-end {
+    margin-top: 20%;
+  }
+  .logo-foot {
+    width: 75%;
   }
 
   #nav-lp {
@@ -183,29 +203,12 @@ footer {
   }
 }
 
-@media all and (min-width: 992px) and (max-width: 1200px) {
-  .nav-queries {
+@media all and (min-width: 701px) and (max-width: 1200px) {
+  /*.nav-queries {
     display: none !important;
-  }
+  }*/
 
   .navbar navbar-expand-lg navbar-light bg-light {
     display: flex !important;
   }
-
-  /*#navbarSupportedContent {
-    display: flex !important;
-    position: absolute !important;
-    transform: translatex(-50) !important;
-    justify-content: center !important;
-    margin-top: 0px !important;
-    margin-left: 80px !important;
-  }
-
- .navbar-nav {
-   text-align: center !important;
- }
-
- .nav-item {
-   display: inline-block !important;
- }*/
 }
