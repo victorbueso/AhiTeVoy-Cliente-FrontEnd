@@ -7,11 +7,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
