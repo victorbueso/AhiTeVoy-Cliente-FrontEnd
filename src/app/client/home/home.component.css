@@ -1,0 +1,23 @@
+.bg-light {
+  background-color: #F7F7FF !important;
+}
+
+@media all and (min-width: 200px) and (max-width: 700px) {
+  .n-mobile {
+    display: block;
+  }
+
+  .n-desktop {
+    display: none;
+  }
+}
+
+@media all and (min-width: 701px) and (max-width: 1500px) {
+  .n-mobile {
+    display: none;
+  }
+
+  .n-desktop {
+    display: block;
+  }
+}

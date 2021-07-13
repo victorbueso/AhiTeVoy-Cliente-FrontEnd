@@ -1,7 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'home',
+    loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
+  },
+  {
+    path: '',
+    component: LandingPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'error',
+    component: ErrorPageComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'error',
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

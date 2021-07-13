@@ -1,0 +1,22 @@
+.fa-icon {
+  margin: auto auto;
+  font-size: 30px;
+  color: gray;
+}
+
+.img-profile {
+  border-color: black !important;
+  border-radius: 50px !important;
+  width: 60px;
+  height: 60px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#logo-home {
+  background: url("../../../assets/img/landing-page/AhíTeVoy-logo1 (1).png");
+  width: 55px;
+  height: 55px;
+  background-size: cover;
+}
+
