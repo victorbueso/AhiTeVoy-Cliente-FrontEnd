@@ -219,7 +219,7 @@
                   <input formControlName="rgConfPassword" class="form-control" type="password" name="">
               </div>
               <div class="row mx-auto mt-4 mb-3" id="register" style="width: 50%;">
-                  <button [disabled]="!formularioRegistro.valid" class="form-control btn btn-primary hover-button-login" type="button">Registrarme</button>
+                  <button [disabled]="!formularioRegistro.valid"  (click)="registrarUsuario()" class="form-control btn btn-primary hover-button-login" type="button">Registrarme</button>
               </div>
           </form>
           <div class="row mx-auto d-flex justify-content-center align-items-center" id="r-login" style="width: 100%;">
@@ -269,7 +269,7 @@
               </div>
               <div class="mt-3">
                   <div class="d-flex justify-content-center">
-                      <button class="btn btn-outline-primary hover-button-login">Iniciar Sesión</button><br>
+                      <button class="btn btn-outline-primary hover-button-login" (click)="buttonLogin()">Iniciar Sesión</button><br>
                   </div>
               </div>
           </form>

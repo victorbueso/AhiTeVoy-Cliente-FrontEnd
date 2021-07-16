@@ -1,21 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light n">
   <div class="container-fluid">
     <div class="nav-item" id="logo-home"></div>
-    <ul class="navbar-nav mx-auto">
-      <div class="nav-item mx-auto d-flex justify-content-center align-items-center" id="form-home">
-          <label><fa-icon [icon]="faSearch"></fa-icon></label>
-          <input type="text" placeholder="Buscar..." class="nav-link form-control">
-      </div>
+    <ul class="navbar-nav mx-auto d-flex justify-content-center">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-left align-items-center">
+            <fa-icon [icon]="faSearch" class="input-icon"></fa-icon>
+            <input class="form-control input-padding" type="text" placeholder="Buscar...">
+          </div>
+        </div>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item mx-3">
+      <li class="nav-item px-2">
         <fa-icon [icon]="faShoppingCart" class="fa-icon"></fa-icon>
       </li>
     </ul>
-    <div>
-      <div class="nav-item img-profile d-flex align-items-center justify-content-center">
-        <div class="mx-2" style="background: url('../../../assets/img/home/profile-icon.png'); width: 40px; height: 40px; background-size: cover;"></div>
-      </div>
-    </div>
+    <ul class="navbar-nav px-2">
+      <li class="nav-item img-profile d-flex align-items-center justify-content-center">
+        <!--<div class="mx-2" style="background: url('../../../assets/img/home/profile-icon.png'); width: 40px; height: 40px; background-size: cover;"></div>-->
+        <img class="f-perfil" src="../../../assets/img/home/profile-icon.png" width="45" alt="">
+      </li>
+    </ul>
   </div>
 </nav>

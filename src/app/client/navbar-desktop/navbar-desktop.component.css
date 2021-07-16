@@ -6,11 +6,12 @@
 
 .img-profile {
   border-color: black !important;
-  border-radius: 50px !important;
-  width: 60px;
-  height: 60px;
+  border-radius: 50% !important;
+  width: 45px;
+  height: 45px;
   margin-top: auto;
   margin-bottom: auto;
+  right: 10px !important;
 }
 
 #logo-home {
@@ -20,3 +21,25 @@
   background-size: cover;
 }
 
+.input-icon {
+  font-size: 20px;
+  position: absolute;
+  left: auto;
+  padding-left: 10px;
+  color: gray;
+}
+
+.input-padding {
+  padding-left: 35px;
+  border-radius: 15px;
+}
+
+.f-perfil {
+  background-size: auto;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.n {
+  background-color: #F7F7FF !important;
+}
