@@ -46,7 +46,7 @@ export class ClientesService {
 
   validarTokenCliente(): Observable<boolean> {
     const headers = new HttpHeaders()
-      .set('x-token', localStorage.getItem('token') || '' );
+      .set('x-token', localStorage.getItem('tokenCliente') || '' );
 
     return this.httpClient.get<AuthResponse>(`${this.url}/renew`, { headers } )
         .pipe(

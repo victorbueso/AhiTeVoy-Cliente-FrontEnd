@@ -137,14 +137,14 @@ export class LandingPageComponent implements OnInit {
     this.message = "";
     this.errorLogin = false;
     var data = {
-      correo:this.formularioLogin.value.lgCorreo,
-      password:this.formularioLogin.value.lgPassword
+      correo: this.formularioLogin.value.lgCorreo,
+      password: this.formularioLogin.value.lgPassword
     }
     this.clienteService.loginUsuarioCliente(data).subscribe(
       result => {
         this.formularioLogin.reset();
-        this.pruebaUsuarioLogueado = result.idClient;
-        this.router.navigate(['home']);
+        //this.pruebaUsuarioLogueado = result.idClient;
+        this.router.navigate(['/home']);
         //this.ngOnInit();
         this.formularioLogin.reset();
         this.modal.dismissAll();

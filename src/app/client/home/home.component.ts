@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { CategoriasService } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,21 @@ export class HomeComponent implements OnInit {
   faBars = faBars;
   faShoppingCart = faShoppingCart;
 
-  constructor() { }
+  public categorias: Array<any> = [];
+
+  constructor(
+    private categoriasService: CategoriasService,
+  ) { }
 
   ngOnInit(): void {
+    this.obtenerCategorias();
+  }
+
+  obtenerCategorias() {
+    this.categoriasService.getCategories()
+      .subscribe( resp => {
+        this.categorias = resp;
+      }, error => console.log(error))
   }
 
 }
