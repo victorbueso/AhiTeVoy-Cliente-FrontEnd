@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light n">
+<nav class="navbar navbar-expand-lg navbar-light bg-light n" *ngIf="!mostrar">
   <div class="container-fluid">
-    <div class="d-flex justify-content-center px-3" id="">
+    <div class="d-flex justify-content-center px-3" id="" (click)="show()">
       <fa-icon [icon]="faBars" class="fa-icon"></fa-icon>
     </div>
     <ul class="navbar-nav" id="nav-home">
@@ -11,3 +11,53 @@
     </div>
   </div>
 </nav>
+
+<div *ngIf="mostrar" style="background-color: #FCBF49; width: 100vw; height: 100vh;">
+  <div class="container-fluid">
+    <div class="p-3" id="" (click)="show()" >
+      <fa-icon [icon]="faTimes" class="fa-icon-hidden"></fa-icon>
+    </div>
+
+    <div class="row mt-3 d-flex justify-content-center">
+      <div class="col-6 d-flex justify-content-left align-items-center">
+        <fa-icon [icon]="faSearch" class="input-icon"></fa-icon>
+        <input class="form-control input-padding" type="text" placeholder="Buscar...">
+      </div>
+    </div>
+
+    <div class="container mt-4" (click)="show()" (click)="showEditarPerfil()" routerLink="administradores">
+      <div class="row">
+        <div class="col-2"><fa-icon [icon]="faUserEdit" class="fa-icon-option"></fa-icon></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Editar Perfil</h4></div>
+      </div>
+    </div>
+
+    <div class="container mt-4" (click)="show()" (click)="showPedidoActual()" routerLink="empresas">
+      <div class="row">
+        <div class="col-2"><fa-icon [icon]="faBox" class="fa-icon-option"></fa-icon></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Mi pedido</h4></div>
+      </div>
+    </div>
+
+    <div class="container mt-4" (click)="show()" (click)="showHistorialPedidos()" routerLink="motoristas">
+      <div class="row">
+        <div class="col-2"><fa-icon [icon]="faClipboardList" class="fa-icon-option"></fa-icon></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Historial de pedidos</h4></div>
+      </div>
+    </div>
+
+    <div class="container mt-4" (click)="show()" (click)="showAyuda()" routerLink="ordenes">
+      <div class="row">
+        <div class="col-2"><fa-icon [icon]="faQuestionCircle" class="fa-icon-option"></fa-icon></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Ayuda</h4></div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-2"><fa-icon [icon]="faSignOutAlt" class="fa-icon-option"></fa-icon></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Cerrar Sesión</h4></div>
+      </div>
+    </div>
+  </div>
+</div>

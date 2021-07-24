@@ -8,13 +8,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarMobileComponent } from './navbar-mobile/navbar-mobile.component';
 import { NavbarDesktopComponent } from './navbar-desktop/navbar-desktop.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
+import { HistorialPedidosComponent } from './historial-pedidos/historial-pedidos.component';
+import { PedidoActualComponent } from './pedido-actual/pedido-actual.component';
+import { VerEmpresasComponent } from './ver-empresas/ver-empresas.component';
+import { VerProductosComponent } from './ver-productos/ver-productos.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     NavbarMobileComponent,
-    NavbarDesktopComponent
+    NavbarDesktopComponent,
+    EditarPerfilComponent,
+    HistorialPedidosComponent,
+    PedidoActualComponent,
+    VerEmpresasComponent,
+    VerProductosComponent
   ],
   imports: [
     CommonModule,

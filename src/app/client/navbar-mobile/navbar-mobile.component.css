@@ -4,6 +4,33 @@
   color: gray;
 }
 
+.fa-icon-hidden {
+  font-size: 30px;
+  color: #003049;
+  opacity: 0.7;
+}
+
+.input-icon {
+  font-size: 20px;
+  position: absolute;
+  left: auto;
+  padding-left: 10px;
+  color: #003049;
+  opacity: 0.7;
+}
+
+.fa-icon-option {
+  color: #003049;
+  font-size: 35px;
+  margin: auto auto;
+  opacity: 0.7;
+}
+
+.input-padding {
+  padding-left: 35px;
+  border-radius: 15px;
+}
+
 #nav-home {
   padding-left: auto;
   padding-right: auto;
