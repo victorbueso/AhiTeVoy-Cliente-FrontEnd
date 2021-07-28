@@ -1,16 +1,16 @@
 <app-navbar-mobile class="n-mobile"></app-navbar-mobile>
 <app-navbar-desktop class="n-desktop"></app-navbar-desktop>
 
-<div class="container py-4">
-  <h2 class="text-center">Hacemos lo mejor para ti. Dinos, ¿qué buscas?</h2>
-</div>
+<div class="container" *ngIf="mostrarCategorias">
+  <div class="row py-4 m-0">
+    <h2 class="text-center">Hacemos lo mejor para ti. Dinos, ¿qué buscas?</h2>
+  </div>
 
-<div class="container">
   <div class="row">
-      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4" id="c-{{i}}" *ngFor="let categoria of categorias, let i = index">
-        <div class="card d-flex justify-content-center" style="background-color: #9DD9D2;">
+      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4" *ngFor="let categoria of categorias, let i = index">
+        <div class="card d-flex justify-content-center cats" id="{{ categoria.codigoCategoria }}" (click)="showEmpresas(categoria.codigoCategoria, categoria.nombre)">
           <div class="d-flex justify-content-center">
-            <img class="p-3 pb-3 w-50" src="http://localhost:3000/{{categoria.imagen}}">
+            <img class="p-3 pb-3 w-50" src="http://localhost:3000/{{ categoria.imagen }}">
           </div>
           <!--<p class="ml-3">Comercios</p>-->
         </div>
@@ -19,5 +19,53 @@
   </div>
 </div>
 
+<div class="container" *ngIf="mostrarEmpresas">
+  <div class="row py-4 m-0">
+    <h2 class="" (click)="showCategorias()">{{categoriaActual}}</h2>
+    <hr>
+    <div class="" *ngIf="empresas.length == 0">
+      {{noHayEmpresas}}
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3 mobile" *ngFor="let empresa of empresas, let i = index">
+      <div class="row m-0 {{ empresa.codigoCategoria }} emps">
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 d-flex justify-content-center">
+          <div class="img-profile">
+            <img class="f-perfil" src="http://localhost:3000/{{ empresa.logo }}" width="45">
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">
+          <p class="my-0 text-color">{{empresa.nombreEmpresa}}</p>
+          <p class="my-0 text-color">{{empresa.correo}}</p>
+          <p class="my-0 text-color">calificación</p>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5 d-flex align-items-center justify-content-end">
+          <button class="btn btn-primary button-mobile" (click)="showProductos(empresa.codigoEmpresa, empresa.nombreEmpresa)" (click)="showCategorias()">Explorar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<router-outlet></router-outlet>
+<div class="container" *ngIf="mostrarProductos">
+  <div class="row py-4 m-0">
+    <h2 class="" (click)="mostrarProductos = false; mostrarEmpresas = true;">{{empresaActual}}</h2>
+    <hr>
+    <div class="" *ngIf="empresas.length == 0">
+      {{noHayEmpresas}}
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4" *ngFor="let producto of productos, let i = index">
+        <div class="card d-flex justify-content-center cats {{ producto.codigoEmpresa }}">
+          <div class="d-flex justify-content-center">
+            <img class="p-3 pb-3 w-50" src="http://localhost:3000/{{ producto.imagen }}">
+          </div>
+          <!--<p class="ml-3">Comercios</p>-->
+        </div>
+        <h6 class="text-center pt-1">{{ producto.nombreProducto }}</h6>
+        <!--<h6 class="text-center pt-1">{{ categoriaActual }}</h6>
+        <h6 class="text-center pt-1">{{ producto.precio }}</h6>-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--<router-outlet></router-outlet>-->

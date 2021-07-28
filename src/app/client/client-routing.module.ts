@@ -1,15 +1,28 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
+import { ErrorPageComponent } from '../components/error-page/error-page.component';
+import { HistorialPedidosComponent } from './historial-pedidos/historial-pedidos.component';
+import { PedidoActualComponent } from './pedido-actual/pedido-actual.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    children: [
+      { path: 'editar', component: EditarPerfilComponent },
+      { path: 'pedido', component: PedidoActualComponent },
+      { path: 'historial', component: HistorialPedidosComponent },
+      { path: 'ayuda', component: AyudaComponent },
+      { path: 'error', component: ErrorPageComponent },
+      { path: '**', redirectTo: '' },
+    ]
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '',
   }
 ]
 

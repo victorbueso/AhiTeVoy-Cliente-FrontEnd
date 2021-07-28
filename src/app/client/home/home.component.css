@@ -2,7 +2,41 @@
   background-color: #F7F7FF !important;
 }
 
-@media all and (min-width: 200px) and (max-width: 700px) {
+.btn-primary {
+  background-color: #003049 !important;
+  border: 1px solid #003049 !important
+}
+
+.cats {
+  background-color: #9DD9D2;
+}
+
+.emps {
+  background-color: white;
+}
+
+.img-profile {
+  border-color: black !important;
+  border-radius: 50% !important;
+  width: 45px !important;
+  height: 45px !important;
+  margin-top: auto;
+  margin-bottom: auto;
+  right: 10px !important;
+}
+
+.f-perfil {
+  background-size: auto;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.text-color {
+  color: #003049;
+  font-size: 1.1rem;
+}
+
+@media all and (min-width: 100px) and (max-width: 700px) {
   .n-mobile {
     display: block;
   }
@@ -10,6 +44,40 @@
   .n-desktop {
     display: none;
   }
+
+  .img-profile {
+    border-color: black !important;
+    border-radius: 50% !important;
+    width: 35px !important;
+    height: 35px !important;
+    margin-top: auto;
+    margin-bottom: auto;
+    right: 10px !important;
+  }
+
+  .mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .button-mobile {
+    font-size: .7rem;
+    padding: 5px;
+  }
+
+  .text-color {
+    color: #003049;
+    font-size: .7rem;
+  }
+
+  .f-perfil {
+    width: 135% !important;
+  }
+
+  .f-imagen {
+    width: 100% !important;
+  }
+
 }
 
 @media all and (min-width: 701px) and (max-width: 1500px) {
@@ -20,4 +88,6 @@
   .n-desktop {
     display: block;
   }
+
+
 }

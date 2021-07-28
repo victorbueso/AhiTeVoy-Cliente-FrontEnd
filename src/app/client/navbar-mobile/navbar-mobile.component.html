@@ -18,46 +18,76 @@
       <fa-icon [icon]="faTimes" class="fa-icon-hidden"></fa-icon>
     </div>
 
-    <div class="row mt-3 d-flex justify-content-center">
+    <div class="row px-2 d-flex justify-content-center">
+      <div class="col-3 d-flex align-items-center">
+        <div class="img-profile">
+          <img class="f-perfil" src="../../../assets/img/home/gohan.jpg" width="45" alt="">
+        </div>
+        <!--<div class="mx-2" style="background: url('../../../assets/img/home/profile-icon.png'); width: 40px; height: 40px; background-size: cover;"></div>-->
+      </div>
+      <div class="col-6">
+        <p class="my-0 text-color">Goku</p>
+        <p class="my-0 text-color">correo@gmail.com</p>
+      </div>
+    </div>
+
+    <!--<div class="row mt-3 d-flex justify-content-center">
       <div class="col-6 d-flex justify-content-left align-items-center">
         <fa-icon [icon]="faSearch" class="input-icon"></fa-icon>
         <input class="form-control input-padding" type="text" placeholder="Buscar...">
       </div>
-    </div>
+    </div>-->
 
-    <div class="container mt-4" (click)="show()" (click)="showEditarPerfil()" routerLink="administradores">
+    <div class="container mt-4" (click)="show()" (click)="showEditarPerfil()" routerLink="editar">
       <div class="row">
         <div class="col-2"><fa-icon [icon]="faUserEdit" class="fa-icon-option"></fa-icon></div>
-        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Editar Perfil</h4></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-color">Editar Perfil</h4></div>
       </div>
     </div>
 
-    <div class="container mt-4" (click)="show()" (click)="showPedidoActual()" routerLink="empresas">
+    <div class="container mt-4" (click)="show()" (click)="showPedidoActual()" routerLink="pedido">
       <div class="row">
         <div class="col-2"><fa-icon [icon]="faBox" class="fa-icon-option"></fa-icon></div>
-        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Mi pedido</h4></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-color">Mi pedido</h4></div>
       </div>
     </div>
 
-    <div class="container mt-4" (click)="show()" (click)="showHistorialPedidos()" routerLink="motoristas">
+    <div class="container mt-4" (click)="show()" (click)="showHistorialPedidos()" routerLink="historial">
       <div class="row">
         <div class="col-2"><fa-icon [icon]="faClipboardList" class="fa-icon-option"></fa-icon></div>
-        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Historial de pedidos</h4></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-color">Historial de pedidos</h4></div>
       </div>
     </div>
 
-    <div class="container mt-4" (click)="show()" (click)="showAyuda()" routerLink="ordenes">
+    <div class="container mt-4" (click)="show()" (click)="showAyuda()" routerLink="ayuda">
       <div class="row">
         <div class="col-2"><fa-icon [icon]="faQuestionCircle" class="fa-icon-option"></fa-icon></div>
-        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Ayuda</h4></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-color">Ayuda</h4></div>
       </div>
     </div>
 
     <div class="container mt-4">
       <div class="row">
         <div class="col-2"><fa-icon [icon]="faSignOutAlt" class="fa-icon-option"></fa-icon></div>
-        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-white">Cerrar Sesión</h4></div>
+        <div class="col-10 d-flex justify-content-left align-items-center"><h4 class="px-2 mb-0 d-flex align-items-center text-color">Cerrar Sesión</h4></div>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="mostrarEditarPerfil">
+  <app-editar-perfil></app-editar-perfil>
+</div>
+
+<div *ngIf="mostrarPedidoActual">
+  <app-pedido-actual></app-pedido-actual>
+</div>
+
+<div *ngIf="mostrarHistorialPedidos">
+  <app-historial-pedidos></app-historial-pedidos>
+</div>
+
+<div *ngIf="mostrarAyuda">
+  <app-ayuda></app-ayuda>
+</div>
+
