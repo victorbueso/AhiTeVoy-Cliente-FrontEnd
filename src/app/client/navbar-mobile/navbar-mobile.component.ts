@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { faBars, faBox, faShoppingCart, faUserEdit, faClipboardList, faQuestionCircle, faSignOutAlt, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBox, faShoppingCart, faUserEdit, faClipboardList, faQuestionCircle, faSignOutAlt, faTimes, faSearch, faHome } from '@fortawesome/free-solid-svg-icons';
+import { ClientesService } from '../../services/clientes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-mobile',
@@ -8,6 +10,9 @@ import { faBars, faBox, faShoppingCart, faUserEdit, faClipboardList, faQuestionC
   styleUrls: ['./navbar-mobile.component.css']
 })
 export class NavbarMobileComponent implements OnInit {
+
+  @Output() onNewComponente: EventEmitter<boolean> = new EventEmitter();
+
   faBars = faBars;
   faTimes = faTimes;
   faSearch = faSearch;
@@ -17,6 +22,7 @@ export class NavbarMobileComponent implements OnInit {
   faClipboardList = faClipboardList;
   faQuestionCircle = faQuestionCircle;
   faSignOutAlt = faSignOutAlt;
+  faHome = faHome;
 
 
   public mostrar: boolean = false;
@@ -25,7 +31,10 @@ export class NavbarMobileComponent implements OnInit {
   public mostrarHistorialPedidos: boolean = false;
   public mostrarAyuda: boolean = false;
 
-  constructor() { }
+  constructor(
+    private clientesService: ClientesService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -35,31 +44,40 @@ export class NavbarMobileComponent implements OnInit {
   }
 
   showEditarPerfil() {
+    this.onNewComponente.emit(false);
     this.mostrarPedidoActual = false;
     this.mostrarHistorialPedidos = false;
     this.mostrarAyuda = false;
-    return this.mostrarEditarPerfil = !this.mostrarEditarPerfil;
+    return this.mostrarEditarPerfil = true;
   }
 
   showPedidoActual() {
+    this.onNewComponente.emit(false);
     this.mostrarEditarPerfil = false;
     this.mostrarHistorialPedidos = false;
     this.mostrarAyuda = false;
-    return this.mostrarPedidoActual = !this.mostrarPedidoActual;
+    return this.mostrarPedidoActual = true;
   }
 
   showHistorialPedidos() {
+    this.onNewComponente.emit(false);
     this.mostrarEditarPerfil = false;
     this.mostrarPedidoActual = false;
     this.mostrarAyuda = false;
-    return this.mostrarHistorialPedidos = !this.mostrarHistorialPedidos;
+    return this.mostrarHistorialPedidos = true;
   }
 
-  showAyuda() {
+  showHome() {
+    this.onNewComponente.emit(true);
     this.mostrarEditarPerfil = false;
     this.mostrarPedidoActual = false;
     this.mostrarHistorialPedidos = false;
-    return this.mostrarAyuda = !this.mostrarAyuda;
+    return this.mostrarAyuda = false;
+  }
+
+  logout() {
+    this.router.navigateByUrl('');
+    localStorage.removeItem('tokenCliente');
   }
 
 }

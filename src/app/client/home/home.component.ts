@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +12,14 @@ import { ProductosService } from '../../services/productos.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  active: boolean = true;
+  activeD: boolean = true;
+
   faBars = faBars;
   faShoppingCart = faShoppingCart;
+
+  //public showHamburger: boolean = true;
 
   public categorias: Array<any> = [];
   public empresas: Array<any> = [];
@@ -36,6 +42,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCategorias();
+  }
+
+  controlarCategoria(cat: boolean) {
+    this.active = cat;
+  }
+
+  show() {
+    //this.mostrarCategorias = !this.mostrarCategorias;
+    //this.mostrarEmpresas = !this.mostrarEmpresas;
+    //this.mostrarProductos = !this.mostrarProductos;
   }
 
   obtenerCategorias() {

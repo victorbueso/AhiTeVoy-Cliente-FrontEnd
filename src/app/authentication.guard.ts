@@ -18,7 +18,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
       .pipe(
         tap( valid => {
           if ( !valid ) {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('');
           }
         })
       );
@@ -29,7 +29,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
       .pipe(
         tap( valid => {
           if ( !valid ) {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('');
           }
         })
       );
