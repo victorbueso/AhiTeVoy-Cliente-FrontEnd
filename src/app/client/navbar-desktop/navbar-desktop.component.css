@@ -67,3 +67,15 @@
   width: 25vw;
   border-radius: 20px !important;
 }
+
+.carrito {
+  z-index: 1;
+  position: absolute;
+  right: 60px;
+  width: 40vw;
+  border-radius: 20px !important;
+}
+
+.shoppingCart, .profile-settings {
+  cursor: pointer;
+}

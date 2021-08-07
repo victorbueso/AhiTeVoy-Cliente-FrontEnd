@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { faBars, faHome, faUserEdit, faBox, faClipboardList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHome, faUserEdit, faBox, faClipboardList, faSignOutAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ClientesService } from '../../services/clientes.service';
@@ -23,9 +23,11 @@ export class NavbarDesktopComponent implements OnInit {
   faBox = faBox;
   faClipboardList = faClipboardList;
   faSignOutAlt = faSignOutAlt;
+  faTrashAlt = faTrashAlt;
 
-  mostrar: boolean = false;
+  //mostrar: boolean = false;
   mostrarSettings: boolean = false;
+  mostrarCarrito: boolean = false;
 
   mostrarHome: boolean = false;
   mostrarEditarPerfil: boolean = false;
@@ -41,12 +43,16 @@ export class NavbarDesktopComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show() {
+  /*show() {
     return this.mostrar = !this.mostrar;
-  }
+  }*/
 
   showSettings() {
     this.mostrarSettings = !this.mostrarSettings;
+  }
+
+  showCarrito() {
+    this.mostrarCarrito = !this.mostrarCarrito;
   }
 
   showEditarPerfil() {

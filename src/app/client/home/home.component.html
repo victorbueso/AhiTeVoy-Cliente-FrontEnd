@@ -13,7 +13,7 @@
 
   <div class="row">
       <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4" *ngFor="let categoria of categorias, let i = index">
-        <div class="card d-flex justify-content-center cats" id="{{ categoria.codigoCategoria }}" (click)="showEmpresas(categoria.codigoCategoria, categoria.nombre)">
+        <div class="card d-flex justify-content-center cats" style="border-radius: 10px;" id="{{ categoria.codigoCategoria }}" (click)="showEmpresas(categoria.codigoCategoria, categoria.nombre)">
           <div class="d-flex justify-content-center">
             <img class="p-3 pb-3 w-50" src="http://localhost:3000/{{ categoria.imagen }}">
           </div>
@@ -26,14 +26,16 @@
 
 <div class="container" *ngIf="mostrarEmpresas && active">
   <div class="row py-4 m-0">
-    <h2 class="" (click)="showCategorias()">{{categoriaActual}}</h2>
+    <h2 class="title-empresa" (click)="showCategorias()">
+      <fa-icon [icon]="faCaretLeft" class="px-2"></fa-icon>{{categoriaActual}}
+    </h2>
     <hr>
     <div class="" *ngIf="empresas.length == 0">
       {{noHayEmpresas}}
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3 mobile" *ngFor="let empresa of empresas, let i = index">
-      <div class="row m-0 {{ empresa.codigoCategoria }} emps">
-        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 d-flex justify-content-center">
+      <div class="row m-0 {{ empresa.codigoCategoria }} emps" style="border-radius: 15px;">
+        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2 d-flex justify-content-center">
           <div class="img-profile">
             <img class="f-perfil" src="http://localhost:3000/{{ empresa.logo }}" width="45">
           </div>
@@ -43,7 +45,7 @@
           <p class="my-0 text-color">{{empresa.correo}}</p>
           <p class="my-0 text-color">calificación</p>
         </div>
-        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5 d-flex align-items-center justify-content-end">
+        <div class="col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5 d-flex align-items-center justify-content-end">
           <button class="btn btn-primary button-mobile" (click)="showProductos(empresa.codigoEmpresa, empresa.nombreEmpresa)" (click)="showCategorias()">Explorar</button>
         </div>
       </div>
@@ -53,14 +55,16 @@
 
 <div class="container" *ngIf="mostrarProductos && active">
   <div class="row py-4 m-0">
-    <h2 class="" (click)="mostrarProductos = false; mostrarEmpresas = true;">{{empresaActual}}</h2>
+    <h2 class="title-producto" (click)="mostrarProductos = false; mostrarEmpresas = true;">
+      <fa-icon [icon]="faCaretLeft" class="px-2"></fa-icon>{{empresaActual}}
+    </h2>
     <hr>
     <div class="" *ngIf="empresas.length == 0">
       {{noHayProductos}}
     </div>
     <div class="row">
       <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4" *ngFor="let producto of productos, let i = index">
-        <div class="card d-flex justify-content-center cats {{ producto.codigoEmpresa }}">
+        <div class="card d-flex justify-content-center cats {{ producto.codigoEmpresa }}" style="border-radius: 10px;" (click)="detalleP(producto)" (click)="open(detalleProducto)">
           <div class="d-flex justify-content-center">
             <img class="p-3 pb-3 w-50" src="http://localhost:3000/{{ producto.imagen }}">
           </div>
@@ -73,5 +77,57 @@
     </div>
   </div>
 </div>
+
+<!-- Pantalla modal para ver el detalle de un producto -->
+<ng-template #detalleProducto let-modal>
+  <div class="modal-body cats" style="padding-top: 0px; padding-bottom: 0px;">
+    <!--<ngb-alert type="success" class="mt-1" *ngIf="successMessage">{{ successfull }}</ngb-alert>-->
+    <div class="row d-flex justify-content-center pt-4">
+      <div class="box-img-detail mb-4">
+        <div class="card d-flex justify-content-center img-fluid">
+          <img [src]="'http://localhost:3000/'+detalleProductoActual.imagen">
+        </div>
+        <!--<h6 class="text-center pt-1">{{ producto.nombreProducto }}</h6>-->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 text-start">
+        <h4 class="h-detail">{{detalleProductoActual.nombreProducto}}</h4>
+      </div>
+      <div class="col-4 text-end">
+        <h4 class="h-detail">L {{detalleProductoActual.precio}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <p class="p-detail">{{detalleProductoActual.descripcionProducto}}</p>
+    </div>
+  </div>
+  <div class="footer cats">
+    <div class="row py-3">
+      <div class="d-flex pr-2 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 10%;">
+          <button type="button" class="btn btn-danger d-flex">
+            <fa-icon [icon]="faShoppingCart" class="px-1"></fa-icon><p class="addCart m-0 p-0">Agregar al carrito</p>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 d-flex justify-content-center" (click)="decrementarCantidad()">
+          <button type="button" class="btn btn-warning p-0 px-1">
+            <fa-icon [icon]="faMinus" class="px-1 plus-minus"></fa-icon>
+          </button>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+          <h4 class="text-center" style="color: #003049">{{contador}}</h4>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 d-flex justify-content-center" (click)="acumularCantidad()">
+          <button type="button" class="btn btn-warning p-0 px-1">
+            <fa-icon [icon]="faPlus" class="px-1 plus-minus"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 <!--<router-outlet></router-outlet>-->

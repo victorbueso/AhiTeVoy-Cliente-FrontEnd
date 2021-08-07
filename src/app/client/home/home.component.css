@@ -7,12 +7,40 @@
   border: 1px solid #003049 !important
 }
 
+.btn-danger {
+  background-color: #D62828 !important;
+  border: 1px solid #D62828 !important
+}
+
+.btn-warning {
+  background-color: #F77F00;
+  border: 1px solid #F77F00 !important
+}
+
 .cats {
   background-color: #9DD9D2;
+  cursor: pointer;
 }
 
 .emps {
   background-color: white;
+}
+
+.title-empresa, .title-producto {
+  cursor: pointer;
+}
+
+.plus-minus {
+  color: #f5f6f7;
+}
+
+.box-img-detail {
+  width: 250px;
+  padding: 0;
+}
+
+.picDetails {
+  border-radius: 20px !important;
 }
 
 .img-profile {
@@ -78,6 +106,24 @@
     width: 100% !important;
   }
 
+  .box-img-detail {
+    width: 150px !important;
+  }
+
+  .h-detail{
+    font-size: .95rem;
+    color: #003049;
+  }
+
+  .p-detail {
+    font-size: .75rem;
+    color: #003049;
+  }
+
+  .addCart {
+    display: none !important;
+  }
+
 }
 
 @media all and (min-width: 701px) and (max-width: 1500px) {
@@ -89,5 +135,18 @@
     display: block;
   }
 
+  .h-detail {
+    font-size: 1.25rem;
+    color: #003049;
+  }
+
+  .p-detail {
+    font-size: 1rem;
+    color: #003049;
+  }
+
+  .addCart {
+    display: flexbox !important;
+  }
 
 }

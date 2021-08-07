@@ -9,13 +9,13 @@
           </div>
         </div>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto shoppingCart" (click)="showCarrito()" (click)="mostrarSettings = false;">
       <li class="nav-item px-2">
         <fa-icon [icon]="faShoppingCart" class="fa-icon"></fa-icon>
       </li>
     </ul>
-    <ul class="navbar-nav px-2">
-      <li class="nav-item img-profile d-flex align-items-center justify-content-center" (click)="showSettings()">
+    <ul class="navbar-nav px-2 profile-settings" (click)="showSettings()" (click)="mostrarCarrito = false">
+      <li class="nav-item img-profile d-flex align-items-center justify-content-center">
         <!--<div class="mx-2" style="background: url('../../../assets/img/home/profile-icon.png'); width: 40px; height: 40px; background-size: cover;"></div>-->
         <img class="f-perfil" src="../../../assets/img/home/gohan.jpg" width="45" alt="">
       </li>
@@ -23,9 +23,10 @@
   </div>
 </nav>
 
-<div class="card settings" *ngIf="mostrarSettings">
+<!-- Desplegar las opciones al presionar la foto de perfil del usuario -->
+<div class="card" *ngIf="mostrarSettings">
   <div class="row">
-    <div style="background-color: #FCBF49;">
+    <div class="settings" style="background-color: #FCBF49;">
 
         <div class="row px-2 d-flex justify-content-center pt-2 pb-1">
           <div class="col-3 d-flex align-items-center">
@@ -40,43 +41,76 @@
           </div>
         </div>
 
-        <div class="row px-1 my-2" (click)="show()" (click)="showHome()" routerLink="home">
+        <div class="row px-1 my-2" (click)="showSettings()" (click)="showHome()" routerLink="home">
           <div class="row">
-            <div class="col-2"><fa-icon [icon]="faHome" class="fa-icon-option"></fa-icon></div>
-            <div class="col-10 d-flex justify-content-left align-items-center"><h6 class="px-2 mb-0 d-flex align-items-center text-color">Home</h6></div>
+            <div class="col-3"><fa-icon [icon]="faHome" class="fa-icon-option"></fa-icon></div>
+            <div class="col-9 mx-0 px-1 d-flex justify-content-left align-items-center"><h6 class="px-1 mb-0 d-flex align-items-center text-color">Home</h6></div>
           </div>
         </div>
     
-        <div class="row px-1 my-2" (click)="show()" (click)="showEditarPerfil()" routerLink="editar">
+        <div class="row px-1 my-2" (click)="showSettings()" (click)="showEditarPerfil()" routerLink="editar">
           <div class="row">
-            <div class="col-2"><fa-icon [icon]="faUserEdit" class="fa-icon-option"></fa-icon></div>
-            <div class="col-10 d-flex justify-content-left align-items-center"><h6 class="px-2 mb-0 d-flex align-items-center text-color">Editar Perfil</h6></div>
+            <div class="col-3"><fa-icon [icon]="faUserEdit" class="fa-icon-option"></fa-icon></div>
+            <div class="col-9 mx-0 px-1 d-flex justify-content-left align-items-center"><h6 class="px-1 mb-0 d-flex align-items-center text-color">Editar Perfil</h6></div>
           </div>
         </div>
     
-        <div class="row px-1 my-2" (click)="show()" (click)="showPedidoActual()" routerLink="pedido">
+        <div class="row px-1 my-2" (click)="showSettings()" (click)="showPedidoActual()" routerLink="pedido">
           <div class="row">
-            <div class="col-2"><fa-icon [icon]="faBox" class="fa-icon-option"></fa-icon></div>
-            <div class="col-10 d-flex justify-content-left align-items-center"><h6 class="px-2 mb-0 d-flex align-items-center text-color">Mi pedido</h6></div>
+            <div class="col-3"><fa-icon [icon]="faBox" class="fa-icon-option"></fa-icon></div>
+            <div class="col-9 mx-0 px-1 d-flex justify-content-left align-items-center"><h6 class="px-1 mb-0 d-flex align-items-center text-color">Mi pedido</h6></div>
           </div>
         </div>
     
-        <div class="row px-1 my-2" (click)="show()" (click)="showHistorialPedidos()" routerLink="historial">
+        <div class="row px-1 my-2" (click)="showSettings()" (click)="showHistorialPedidos()" routerLink="historial">
           <div class="row">
-            <div class="col-2"><fa-icon [icon]="faClipboardList" class="fa-icon-option"></fa-icon></div>
-            <div class="col-10 d-flex justify-content-left align-items-center"><h6 class="px-2 mb-0 d-flex align-items-center text-color">Historial de pedidos</h6></div>
+            <div class="col-3"><fa-icon [icon]="faClipboardList" class="fa-icon-option"></fa-icon></div>
+            <div class="col-9 mx-0 px-1 d-flex justify-content-left align-items-center"><h6 class="px-1 mb-0 d-flex align-items-center text-color">Historial de pedidos</h6></div>
           </div>
         </div>    
     
-        <div class="row px-1 my-2" (click)="logout()" (click)="show()">
+        <div class="row px-1 my-2" (click)="logout()" (click)="showSettings()">
           <div class="row">
-            <div class="col-2"><fa-icon [icon]="faSignOutAlt" class="fa-icon-option"></fa-icon></div>
-            <div class="col-10 d-flex justify-content-left align-items-center">
-              <h6 class="px-2 mb-0 d-flex align-items-center text-color">Cerrar Sesión</h6>
+            <div class="col-3"><fa-icon [icon]="faSignOutAlt" class="fa-icon-option"></fa-icon></div>
+            <div class="col-9 mx-0 px-1 d-flex justify-content-left align-items-center">
+              <h6 class="px-1 mb-0 d-flex align-items-center text-color">Cerrar Sesión</h6>
             </div>
           </div>
         </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Desplegar carrito de compras al presionar icono "shoppingCart" -->
+<div class="card" *ngIf="mostrarCarrito">
+  <div class="row">
+    <div  class="carrito" style="background-color: #FCBF49;">
+      <div class="row px-2 d-flex justify-content-center pt-2 pb-1">
+        <h6 class="px-2 mb-0 d-flex align-items-center text-color">Mi pedido</h6>
+      </div>
+      <hr>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+        <div class="row m-0 car">
+          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 px-1 d-flex justify-content-center">
+            <div class="img-profile">
+              <img class="f-perfil" src="http://localhost:3000/" width="25">
+            </div>
+          </div>
+          <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5 px-1">
+            <p class="my-0 text-color-min">nombre</p>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 px-1">
+            <p class="my-0 text-color-min">L XX.XX</p>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 px-1">
+            <p class="my-0 text-color-min">XX</p>
+          </div>
+          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 px-0">
+            <fa-icon [icon]="faTrashAlt" class="m-0 p-0" style="color: #D62828;"></fa-icon>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
