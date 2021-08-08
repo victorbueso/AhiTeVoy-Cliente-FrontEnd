@@ -2,7 +2,9 @@
   (onNewComponente)="controlarCategoria($event)">
 </app-navbar-mobile>
 <app-navbar-desktop class="n-desktop"
-  (onNewSettings)="controlarCategoria($event)">
+  [actualizarCarrito]="actualizarCarrito"
+  (onNewSettings)="controlarCategoria($event)"
+  (onEmptyCart)="verificarCarrito($event)">
 </app-navbar-desktop>
 
 
@@ -55,9 +57,16 @@
 
 <div class="container" *ngIf="mostrarProductos && active">
   <div class="row py-4 m-0">
-    <h2 class="title-producto" (click)="mostrarProductos = false; mostrarEmpresas = true;">
-      <fa-icon [icon]="faCaretLeft" class="px-2"></fa-icon>{{empresaActual}}
-    </h2>
+    <div class="col-6">
+      <h2 class="title-producto d-flex align-items-center" (click)="mostrarProductos = false; mostrarEmpresas = true;">
+        <fa-icon [icon]="faCaretLeft" class="px-2"></fa-icon>{{empresaActual}}
+      </h2>
+    </div>
+    <div class="col-6" *ngIf="botonPago">
+      <div class="float-end">
+        <button type="button" class="btn btn-warning boton-pay" (click)="realizarPago()">Pagar</button>
+      </div>
+    </div>
     <hr>
     <div class="" *ngIf="empresas.length == 0">
       {{noHayProductos}}
@@ -80,7 +89,7 @@
 
 <!-- Pantalla modal para ver el detalle de un producto -->
 <ng-template #detalleProducto let-modal>
-  <div class="modal-body cats" style="padding-top: 0px; padding-bottom: 0px;">
+  <div class="modal-body cats-detail" style="padding-top: 0px; padding-bottom: 0px;">
     <!--<ngb-alert type="success" class="mt-1" *ngIf="successMessage">{{ successfull }}</ngb-alert>-->
     <div class="row d-flex justify-content-center pt-4">
       <div class="box-img-detail mb-4">
@@ -102,11 +111,11 @@
       <p class="p-detail">{{detalleProductoActual.descripcionProducto}}</p>
     </div>
   </div>
-  <div class="footer cats">
+  <div class="footer cats-detail">
     <div class="row py-3">
       <div class="d-flex pr-2 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left: 10%;">
-          <button type="button" class="btn btn-danger d-flex">
+          <button type="button" class="btn btn-danger d-flex" (click)="agregarCarrito(detalleProductoActual)" (click)="modal.close()">
             <fa-icon [icon]="faShoppingCart" class="px-1"></fa-icon><p class="addCart m-0 p-0">Agregar al carrito</p>
           </button>
         </div>

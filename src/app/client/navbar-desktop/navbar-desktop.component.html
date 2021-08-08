@@ -9,7 +9,7 @@
           </div>
         </div>
     </ul>
-    <ul class="navbar-nav ml-auto shoppingCart" (click)="showCarrito()" (click)="mostrarSettings = false;">
+    <ul class="navbar-nav ml-auto shoppingCart" (click)="obtenerCarrito()" (click)="showCarrito()" (click)="mostrarSettings = false;">
       <li class="nav-item px-2">
         <fa-icon [icon]="faShoppingCart" class="fa-icon"></fa-icon>
       </li>
@@ -89,26 +89,40 @@
       <div class="row px-2 d-flex justify-content-center pt-2 pb-1">
         <h6 class="px-2 mb-0 d-flex align-items-center text-color">Mi pedido</h6>
       </div>
-      <hr>
+      <hr class="my-1">
+      <div class="row">
+        <div class="col-5 text-color">
+          <h6 style="font-size: .9rem;" class="text-center">Producto</h6>
+        </div>
+        <div class="col-3 text-color">
+          <h6 style="font-size: .9rem;" class="text-center">Precio</h6>
+        </div>
+        <div class="col-4 text-color">
+          <h6 style="font-size: .9rem;" class="text-start">Cantidad</h6>
+        </div>
+      </div>
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
-        <div class="row m-0 car">
+        <div class="container-fluid my-2 px-2 car d-flex align-items-center" *ngFor="let cart of actualizarCarrito; let i = index;">
           <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 px-1 d-flex justify-content-center">
-            <div class="img-profile">
-              <img class="f-perfil" src="http://localhost:3000/" width="25">
+            <div class="img-profile d-flex align-items-center">
+              <img class="f-perfil" [src]="'http://localhost:3000/'+cart.imagenProducto" width="25">
             </div>
           </div>
           <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5 px-1">
-            <p class="my-0 text-color-min">nombre</p>
+            <p class="my-0 text-color-min">{{cart.nombreProducto}}</p>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 px-1">
-            <p class="my-0 text-color-min">L XX.XX</p>
+            <p class="my-0 text-color-min">L {{cart.precio}}</p>
           </div>
           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 px-1">
-            <p class="my-0 text-color-min">XX</p>
+            <p class="my-0 text-color-min">{{cart.cantidad}}</p>
           </div>
-          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 px-0">
+          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 px-0" (click)="borrarCarrito(cart._id)">
             <fa-icon [icon]="faTrashAlt" class="m-0 p-0" style="color: #D62828;"></fa-icon>
           </div>
+        </div>
+        <div class="container d-flex justify-content-center my-2">
+          <button type="button" class="btn btn-primary vaciarCart" (click)="vaciarCarrito()">Vaciar carrito</button>
         </div>
       </div>
     </div>

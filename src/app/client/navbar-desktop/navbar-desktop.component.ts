@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faBars, faHome, faUserEdit, faBox, faClipboardList, faSignOutAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarDesktopComponent implements OnInit {
 
+  @Input() actualizarCarrito: Array<any> = [];
   @Output() onNewSettings: EventEmitter<boolean> = new EventEmitter();
+  @Output() onEmptyCart: EventEmitter<boolean> = new EventEmitter();
 
   faBars = faBars;
   faShoppingCart = faShoppingCart;
@@ -28,6 +30,11 @@ export class NavbarDesktopComponent implements OnInit {
   //mostrar: boolean = false;
   mostrarSettings: boolean = false;
   mostrarCarrito: boolean = false;
+  empty: boolean = false;
+  botonPago: boolean = false;
+
+  carrito: Array<any> = [];
+  carritoActual: any = {};
 
   mostrarHome: boolean = false;
   mostrarEditarPerfil: boolean = false;
@@ -90,6 +97,42 @@ export class NavbarDesktopComponent implements OnInit {
   logout() {
     this.router.navigateByUrl('');
     this.clientesService.logout()
+  }
+
+  obtenerCarrito() {
+    this.carrito = JSON.parse(localStorage.getItem('carrito')!);
+    console.log(this.carrito);
+  }
+
+  borrarCarrito(id: any) {
+    this.actualizarCarrito = JSON.parse(localStorage.getItem('carrito')!);
+    this.actualizarCarrito.splice(id, 1);
+    this.verificarCarrito();
+    localStorage.setItem('carrito', JSON.stringify(this.actualizarCarrito));
+  }
+
+  vaciarCarrito() {
+    if (this.actualizarCarrito == null) {
+      this.empty = false;
+      this.botonPago = false;
+      this.onEmptyCart.emit(false);
+    } else {
+      this.empty = false;
+      this.botonPago = false;
+      this.onEmptyCart.emit(false);
+      this.actualizarCarrito = [];
+      localStorage.setItem('carrito', JSON.stringify(this.actualizarCarrito));
+    }
+  }
+
+  verificarCarrito() {
+    if (this.actualizarCarrito == null) {
+      this.botonPago = false;
+      this.onEmptyCart.emit(false);
+    } else {
+      this.botonPago = true;
+      this.onEmptyCart.emit(true);
+    }
   }
 
 }

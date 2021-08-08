@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
 
   detalleProductoActual!: any;
   contador: number = 1;
+  actualizarCarrito: Array<any> = [];
+  botonPago: boolean = false;
 
   //public showHamburger: boolean = true;
 
@@ -49,9 +51,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCategorias();
+    this.actualizarCarrito = JSON.parse(localStorage.getItem('carrito')!);
   }
 
   open(content: any) {
+    this.contador = 1;
     /*this.detalleProductoActual = producto;
     console.log(this.detalleProductoActual);
     console.log(typeof(this.detalleProductoActual));*/
@@ -126,8 +130,8 @@ export class HomeComponent implements OnInit {
 
   detalleP(producto: any) {
     this.detalleProductoActual = producto;
-    console.log(this.detalleProductoActual);
-    console.log(typeof(this.detalleProductoActual));
+    //console.log(this.detalleProductoActual);
+    //console.log(typeof(this.detalleProductoActual));
   }
 
   acumularCantidad() {
@@ -137,9 +141,59 @@ export class HomeComponent implements OnInit {
   }
 
   decrementarCantidad() {
-    if (this.contador > 0)
+    if (this.contador > 1)
       return this.contador -= 1;
     return this.contador;
+  }
+
+  agregarCarrito(producto: any) {
+    let nuevoProducto = {
+      _id: producto._id,
+      nombreProducto: producto.nombreProducto,
+      imagenProducto: producto.imagen,
+      precio: producto.precio,
+      cantidad: this.contador,
+    };
+    let carrito = [nuevoProducto];
+    let exist = carrito.some(producto => producto._id === nuevoProducto._id);
+    console.log(exist);
+    
+    if (exist) {
+      let cart = carrito.map(producto => {
+        if (producto._id === nuevoProducto._id) {
+          producto.cantidad = nuevoProducto.cantidad;
+          return producto;
+        } else {
+          return producto;
+        }
+      })
+      carrito = [...cart];
+    } else {
+      carrito = [...carrito, nuevoProducto]
+    }
+
+    if (localStorage.getItem('carrito') == null)
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    else {
+      carrito = JSON.parse(localStorage.getItem('carrito')!);
+      carrito.push(nuevoProducto);
+      this.actualizarCarrito = carrito;
+      this.botonPago = true;
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+  }
+
+  verificarCarrito(boton: boolean) {
+    this.botonPago = boton
+    if (this.actualizarCarrito == null)
+      this.botonPago = false;
+    else
+      this.botonPago = true;
+  }
+
+  realizarPago() {
+    console.log(':v');
   }
 
 }

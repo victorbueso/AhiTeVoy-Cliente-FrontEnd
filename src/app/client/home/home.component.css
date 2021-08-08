@@ -17,9 +17,18 @@
   border: 1px solid #F77F00 !important
 }
 
+.boton-pay {
+  background-color: #FCBF49;
+  border: 1px solid #FCBF49 !important;
+}
+
 .cats {
   background-color: #9DD9D2;
   cursor: pointer;
+}
+
+.cats-detail {
+  background-color: #9DD9D2;
 }
 
 .emps {
