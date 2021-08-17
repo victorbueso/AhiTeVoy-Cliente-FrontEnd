@@ -48,6 +48,10 @@ export class NavbarDesktopComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (JSON.parse(localStorage.getItem('carrito')!).length == 0)
+      this.onEmptyCart.emit(false)
+    else
+      this.onEmptyCart.emit(true);
   }
 
   /*show() {
@@ -107,8 +111,19 @@ export class NavbarDesktopComponent implements OnInit {
   borrarCarrito(id: any) {
     this.actualizarCarrito = JSON.parse(localStorage.getItem('carrito')!);
     this.actualizarCarrito.splice(id, 1);
-    this.verificarCarrito();
-    localStorage.setItem('carrito', JSON.stringify(this.actualizarCarrito));
+    //this.verificarCarrito();
+    if (this.actualizarCarrito.length == 0) {
+      this.botonPago = false;
+      console.log(this.botonPago);
+      this.onEmptyCart.emit(false);
+      localStorage.setItem('carrito', JSON.stringify(this.actualizarCarrito));
+    } else {
+      this.botonPago = true;
+      //console.log(this.actualizarCarrito)
+      console.log(this.botonPago);
+      localStorage.setItem('carrito', JSON.stringify(this.actualizarCarrito));
+    }
+
   }
 
   vaciarCarrito() {
@@ -126,7 +141,7 @@ export class NavbarDesktopComponent implements OnInit {
   }
 
   verificarCarrito() {
-    if (this.actualizarCarrito == null) {
+    if (localStorage.getItem('carrito') == null) {
       this.botonPago = false;
       this.onEmptyCart.emit(false);
     } else {

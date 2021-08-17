@@ -14,6 +14,7 @@ import { PedidoActualComponent } from './pedido-actual/pedido-actual.component';
 import { VerEmpresasComponent } from './ver-empresas/ver-empresas.component';
 import { VerProductosComponent } from './ver-productos/ver-productos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { CoordenadasComponent } from './coordenadas/coordenadas.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AyudaComponent } from './ayuda/ayuda.component';
     PedidoActualComponent,
     VerEmpresasComponent,
     VerProductosComponent,
-    AyudaComponent
+    AyudaComponent,
+    CoordenadasComponent
   ],
   imports: [
     CommonModule,

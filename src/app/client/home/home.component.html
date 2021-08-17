@@ -64,7 +64,7 @@
     </div>
     <div class="col-6" *ngIf="botonPago">
       <div class="float-end">
-        <button type="button" class="btn btn-warning boton-pay" (click)="realizarPago()">Pagar</button>
+        <button type="button" class="btn btn-warning boton-pay" [ngClass]="botonPago ? 'd-block' : 'd-none'" (click)="realizarPago()">Pagar</button>
       </div>
     </div>
     <hr>

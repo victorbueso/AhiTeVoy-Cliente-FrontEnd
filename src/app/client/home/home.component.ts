@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   actualizarCarrito: Array<any> = [];
   botonPago: boolean = false;
 
+  localStorage = window.localStorage;
+
   //public showHamburger: boolean = true;
 
   public categorias: Array<any> = [];
@@ -185,11 +187,8 @@ export class HomeComponent implements OnInit {
   }
 
   verificarCarrito(boton: boolean) {
-    this.botonPago = boton
-    if (this.actualizarCarrito == null)
-      this.botonPago = false;
-    else
-      this.botonPago = true;
+    this.botonPago = boton;
+    console.log(this.botonPago)
   }
 
   realizarPago() {
