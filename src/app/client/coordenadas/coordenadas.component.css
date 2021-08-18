@@ -1,0 +1,26 @@
+html, body {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#mapa-mapbox {
+    width: 80vw;
+    height: 55vh;
+    background-color: #f5f6f7;
+}
+
+.btn-primary {
+    background-color: #003049 !important;
+    border: 1px solid #003049 !important
+}
+
+.mapboxgl-popup {
+    width: 50vw !important;
+}
+
+@media all and (min-width: 100px) and (max-width: 700px) {
+    .button-mobile {
+        font-size: .7rem;
+        padding: 5px;
+    }
+}

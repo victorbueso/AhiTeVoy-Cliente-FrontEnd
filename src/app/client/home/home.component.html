@@ -1,10 +1,14 @@
 <app-navbar-mobile class="n-mobile" (click)="show()" 
-  (onNewComponente)="controlarCategoria($event)">
+  [mostrarMapa]="mostrarMapa"
+  (onNewComponente)="controlarCategoria($event)"
+  (ocultarMapa)="ocultarCoordenadas($event)">
 </app-navbar-mobile>
 <app-navbar-desktop class="n-desktop"
   [actualizarCarrito]="actualizarCarrito"
+  [mostrarMapa]="mostrarMapa"
   (onNewSettings)="controlarCategoria($event)"
-  (onEmptyCart)="verificarCarrito($event)">
+  (onEmptyCart)="verificarCarrito($event)"
+  (ocultarMapa)="ocultarCoordenadas($event)">
 </app-navbar-desktop>
 
 
@@ -64,7 +68,9 @@
     </div>
     <div class="col-6" *ngIf="botonPago">
       <div class="float-end">
-        <button type="button" class="btn btn-warning boton-pay" [ngClass]="botonPago ? 'd-block' : 'd-none'" (click)="realizarPago()">Pagar</button>
+        <button type="button" class="btn btn-warning boton-pay"
+          [ngClass]="botonPago ? 'd-block' : 'd-none'" (click)="active = false" (click)="establecerCoordenadas()" routerLink="map">Pagar
+        </button>
       </div>
     </div>
     <hr>
@@ -138,5 +144,8 @@
     </div>
   </div>
 </ng-template>
+
+<app-coordenadas *ngIf="mostrarMapa" [ngClass]="mostrarMapa == true ? 'd-show' : 'd-none'"></app-coordenadas>
+
 
 <!--<router-outlet></router-outlet>-->

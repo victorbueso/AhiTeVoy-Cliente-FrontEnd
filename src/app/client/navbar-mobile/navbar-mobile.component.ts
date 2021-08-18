@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faBars, faBox, faShoppingCart, faUserEdit, faClipboardList, faQuestionCircle, faSignOutAlt, faTimes, faSearch, faHome } from '@fortawesome/free-solid-svg-icons';
 import { ClientesService } from '../../services/clientes.service';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarMobileComponent implements OnInit {
 
+  @Input() mostrarMapa: any;
+  @Output() ocultarMapa: EventEmitter<boolean> = new EventEmitter;
   @Output() onNewComponente: EventEmitter<boolean> = new EventEmitter();
 
   faBars = faBars;
@@ -29,7 +31,7 @@ export class NavbarMobileComponent implements OnInit {
   public mostrarEditarPerfil: boolean = false;
   public mostrarPedidoActual: boolean = false;
   public mostrarHistorialPedidos: boolean = false;
-  public mostrarAyuda: boolean = false;
+  public mostrarAyuda: boolean = false;                 //mostrarHome*
 
   constructor(
     private clientesService: ClientesService,
@@ -48,6 +50,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarPedidoActual = false;
     this.mostrarHistorialPedidos = false;
     this.mostrarAyuda = false;
+    this.ocultarMapa.emit(false);
     return this.mostrarEditarPerfil = true;
   }
 
@@ -56,6 +59,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarEditarPerfil = false;
     this.mostrarHistorialPedidos = false;
     this.mostrarAyuda = false;
+    this.ocultarMapa.emit(false);
     return this.mostrarPedidoActual = true;
   }
 
@@ -64,6 +68,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarEditarPerfil = false;
     this.mostrarPedidoActual = false;
     this.mostrarAyuda = false;
+    this.ocultarMapa.emit(false);
     return this.mostrarHistorialPedidos = true;
   }
 
@@ -72,6 +77,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarEditarPerfil = false;
     this.mostrarPedidoActual = false;
     this.mostrarHistorialPedidos = false;
+    this.ocultarMapa.emit(false);
     return this.mostrarAyuda = false;
   }
 

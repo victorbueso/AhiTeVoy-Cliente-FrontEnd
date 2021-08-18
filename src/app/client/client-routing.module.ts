@@ -6,6 +6,8 @@ import { ErrorPageComponent } from '../components/error-page/error-page.componen
 import { HistorialPedidosComponent } from './historial-pedidos/historial-pedidos.component';
 import { PedidoActualComponent } from './pedido-actual/pedido-actual.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { CoordenadasComponent } from './coordenadas/coordenadas.component';
+import { PagosComponent } from './pagos/pagos.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,8 @@ const routes: Routes = [
       { path: 'historial', component: HistorialPedidosComponent },
       { path: 'ayuda', component: AyudaComponent },
       { path: 'error', component: ErrorPageComponent },
+      { path: 'map', component: CoordenadasComponent },
+      { path: 'pay', component: PagosComponent },
       { path: '**', redirectTo: '' },
     ]
   },

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Output } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { faBars, faCaretLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ import { ProductosService } from '../../services/productos.service';
 export class HomeComponent implements OnInit {
 
   active: boolean = true;
+  //activeMobile: boolean = true;
 
   faBars = faBars;
   faShoppingCart = faShoppingCart;
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
   public mostrarCategorias: boolean = false;
   public mostrarEmpresas: boolean = false;
   public mostrarProductos: boolean = false;
+  public mostrarMapa: boolean = false;
 
   public categoriaActual: string = '';
   public noHayEmpresas = `No hay empresas disponibles en esta categoria`;
@@ -53,6 +55,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCategorias();
+    this.mostrarCategorias = true;
+    this.mostrarMapa = false;
     this.actualizarCarrito = JSON.parse(localStorage.getItem('carrito')!);
   }
 
@@ -99,12 +103,14 @@ export class HomeComponent implements OnInit {
   showCategorias() {
     this.mostrarProductos = false;
     this.mostrarEmpresas = false;
+    this.mostrarMapa = false;
     this.mostrarCategorias = true;
   }
 
   showEmpresas(codigoCategoria: string, nombreCategoria: string) {
     this.mostrarCategorias = false;
     this.mostrarProductos = false;
+    this.mostrarMapa = false;
     this.mostrarEmpresas = true;
     this.empresasService.obtenerEmpresasPorCategoria(codigoCategoria)
       .subscribe( result => {
@@ -119,6 +125,7 @@ export class HomeComponent implements OnInit {
     console.log(codigoEmpresa);
     this.mostrarCategorias = false;
     this.mostrarEmpresas = false;
+    this.mostrarMapa = false;
     this.mostrarProductos = true;
     this.productosService.obtenerProductosPorEmpresa(codigoEmpresa)
       .subscribe( result => {
@@ -191,8 +198,19 @@ export class HomeComponent implements OnInit {
     console.log(this.botonPago)
   }
 
-  realizarPago() {
+  establecerCoordenadas() {
     console.log(':v');
+    //this.mostrarCategorias = !this.mostrarCategorias;
+    //this.mostrarEmpresas = !this.mostrarEmpresas;
+    //this.mostrarProductos = !this.mostrarProductos;
+    this.mostrarMapa = true;
+
   }
+
+  ocultarCoordenadas(ocultarMapa: any) {
+    this.mostrarMapa = ocultarMapa;
+  }
+
+
 
 }
