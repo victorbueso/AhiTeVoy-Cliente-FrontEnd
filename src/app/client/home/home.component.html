@@ -149,5 +149,5 @@
 <app-coordenadas *ngIf="mostrarMapa" [ngClass]="mostrarMapa == true ? 'd-show' : 'd-none'"
   [mostrarPagos]="mostrarPagos" (mostrarPago)="showPagos($event)"></app-coordenadas>
 
-<app-pagos *ngIf="!mostrarMapa && !active"></app-pagos>
+<app-pagos *ngIf="mostrarPagos"></app-pagos>
 <!--<router-outlet></router-outlet>-->

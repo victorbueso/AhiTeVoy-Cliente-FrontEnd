@@ -217,13 +217,15 @@ export class HomeComponent implements OnInit {
     this.mostrarPagos = false;
   }
 
-  ocultarCoordenadas(ocultarMapa: any) {
+  ocultarCoordenadas(ocultarMapa: boolean) {
     this.mostrarMapa = ocultarMapa;
+    this.mostrarPagos = false;
   }
 
   showPagos(event: any) {
+    this.active = false
     this.mostrarMapa = false;
-    this.mostrarPagos = event;
+    this.mostrarPagos = true;
   }
 
   hiddeOpciones(event: any) {

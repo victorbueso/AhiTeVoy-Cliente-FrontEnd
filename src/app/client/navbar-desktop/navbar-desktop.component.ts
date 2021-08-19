@@ -42,6 +42,7 @@ export class NavbarDesktopComponent implements OnInit {
   mostrarHistorialPedidos: boolean = false;
   @Input() mostrarMapa: any;
   @Output() ocultarMapa: EventEmitter<boolean> = new EventEmitter;
+  @Output() ocultarPago: EventEmitter<boolean> = new EventEmitter;
 
   constructor(
     private clientesService: ClientesService,
@@ -73,6 +74,7 @@ export class NavbarDesktopComponent implements OnInit {
     this.mostrarHistorialPedidos = false;
     this.mostrarHome = false;
     this.ocultarMapa.emit(false);
+    this.ocultarPago.emit(false);
     return this.mostrarEditarPerfil = true;
   }
 
@@ -82,6 +84,7 @@ export class NavbarDesktopComponent implements OnInit {
     this.mostrarHistorialPedidos = false;
     this.mostrarHome = false;
     this.ocultarMapa.emit(false);
+    this.ocultarPago.emit(false);
     return this.mostrarPedidoActual = true;
   }
 
@@ -91,6 +94,7 @@ export class NavbarDesktopComponent implements OnInit {
     this.mostrarPedidoActual = false;
     this.mostrarHome = false;
     this.ocultarMapa.emit(false);
+    this.ocultarPago.emit(false);
     return this.mostrarHistorialPedidos = true;
   }
 
@@ -100,6 +104,7 @@ export class NavbarDesktopComponent implements OnInit {
     this.mostrarPedidoActual = false;
     this.mostrarHistorialPedidos = false;
     this.ocultarMapa.emit(false);
+    this.ocultarPago.emit(false);
     return this.mostrarHome = true;
   }
 
