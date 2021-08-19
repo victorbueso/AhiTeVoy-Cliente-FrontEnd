@@ -14,7 +14,8 @@
 
 .btn-warning {
   background-color: #F77F00;
-  border: 1px solid #F77F00 !important
+  border: 1px solid #F77F00 !important;
+  color: #f5f6f7;
 }
 
 .boton-pay {

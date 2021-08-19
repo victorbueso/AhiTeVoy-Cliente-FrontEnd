@@ -10,3 +10,19 @@ tbody > tr:hover {
     background-color: #003049 !important;
     border: 1px solid #003049 !important;
 }
+
+.error-message {
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: fade-in;
+    animation-duration: 1s;
+    display: none;
+    color: red;
+    opacity: 0%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .input-error {
+    border-color: red !important;
+  }
