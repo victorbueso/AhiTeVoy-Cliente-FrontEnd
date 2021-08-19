@@ -4,6 +4,7 @@ import { ClientRoutingModule } from './client-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { HomeComponent } from './home/home.component';
 import { NavbarMobileComponent } from './navbar-mobile/navbar-mobile.component';
@@ -17,6 +18,9 @@ import { AyudaComponent } from './ayuda/ayuda.component';
 import { CoordenadasComponent } from './coordenadas/coordenadas.component';
 import { PagosComponent } from './pagos/pagos.component';
 
+import { SocketService } from '../services/socket.service';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -39,6 +43,11 @@ import { PagosComponent } from './pagos/pagos.component';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    SocketIoModule,
+    SocketIoModule.forRoot(config),
+  ],
+  providers: [
+    SocketService
   ]
 })
 export class ClientModule { }
