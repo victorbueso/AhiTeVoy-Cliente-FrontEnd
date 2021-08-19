@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './pagos.component.html',
   styleUrls: ['./pagos.component.css']
 })
-export class PagosComponent implements OnInit, OnDestroy {
+export class PagosComponent implements OnInit {
 
   faCaretLeft = faCaretLeft;
   closeResult = ``;
@@ -92,19 +92,11 @@ export class PagosComponent implements OnInit, OnDestroy {
     this.ISV = this.subtotal * 0.15;
     this.total = this.subtotal + this.ISV + this.comisionTotal
 
-    this.mensajeSuscripcion = this.ordenesService.getOrdenesNuevas().subscribe( resp=>{
-      console.log('conectamos')
-    },
-    error => {
-      console.log(error);
-    })    
+     
 
   }
   
 
-  ngOnDestroy() {
-    this.mensajeSuscripcion?.unsubscribe();
-  }
 
   calcularCostoDeCadaProducto() {
     let multiplicar;
@@ -158,6 +150,11 @@ export class PagosComponent implements OnInit, OnDestroy {
     this.ordenesService.nuevaOrden(data)
     .subscribe( result => {
 
+      //Entramos a la sala
+      this.ordenesService.entraOrden({nameRoom: result._id} )
+
+      //Actualizamos a todos lo motoristas
+      this.ordenesService.ordenTomada({nameRoom: 'Ordenes'});
       console.log(result);
     }, error => {
       console.log(error);
