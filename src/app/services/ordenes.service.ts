@@ -20,7 +20,7 @@ export class OrdenesService {
   }
 
 
-  
+
   //Emitimos el cambio a la bdd en tiempo real.
   ordenTomada( payload: any ) {
     console.log('Emitiendo', payload);
@@ -39,6 +39,18 @@ export class OrdenesService {
     this.socket.emit('estado', payload);
   }
 
+  
+    //Emitimos conexion al logear.
+  loginWS( email: string ) {
+    this.socket.emit('configurar-usuario', email, (resp: any) => {
+        console.log(resp);
+    });
+  }
+
+      //Servicio para escuchar los cambios en la bdd.
+      getOrdenesNuevas() {
+        return this.socket.listen('orden-tomada');
+    }
 
   //Ejemplo para escuchar
       //Servicio para escuchar los cambios en la bdd.

@@ -19,6 +19,7 @@ import { CoordenadasComponent } from './coordenadas/coordenadas.component';
 import { PagosComponent } from './pagos/pagos.component';
 
 import { SocketService } from '../services/socket.service';
+import { OrdenesService } from '../services/ordenes.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -47,7 +48,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     SocketIoModule.forRoot(config),
   ],
   providers: [
-    SocketService
+    SocketService,
+    OrdenesService
   ]
 })
 export class ClientModule { }

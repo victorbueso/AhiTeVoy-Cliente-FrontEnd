@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrdenesService } from 'src/app/services/ordenes.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
   styleUrls: ['./pagos.component.css']
 })
-export class PagosComponent implements OnInit {
+export class PagosComponent implements OnInit, OnDestroy {
 
   faCaretLeft = faCaretLeft;
   closeResult = ``;
@@ -25,6 +26,7 @@ export class PagosComponent implements OnInit {
   comisionTotal: number = 0;
   total: number = 0;
   costoProducto: any = [];
+  mensajeSuscripcion: Subscription | undefined;
 
   formPagos: FormGroup = this.fb.group({
     numeroTarjeta: [null, [Validators.required, Validators.minLength(4), Validators.pattern("^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|(?:4[0-9]{12}(?:[0-9]{3})?|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})|6(?:011|5[0-9]{2})[0-9]{12}$")]],
@@ -57,6 +59,8 @@ export class PagosComponent implements OnInit {
     }
   }
 
+
+
   limpiar() {
     this.formPagos.reset(this.formPagos);
   }
@@ -77,7 +81,7 @@ export class PagosComponent implements OnInit {
     return this.formPagos.get('descripcion')?.invalid && this.formPagos.get('descripcion')?.touched;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.carritoFinal = JSON.parse(localStorage.getItem('carrito')!);
     this.coordenadaFinal = JSON.parse(localStorage.getItem('coordenadas')!);
     console.log(this.carritoFinal);
@@ -87,6 +91,19 @@ export class PagosComponent implements OnInit {
     this.subtotal = Number(this.calcularSubtotal(this.costoProducto, 'costo'));
     this.ISV = this.subtotal * 0.15;
     this.total = this.subtotal + this.ISV + this.comisionTotal
+
+    this.mensajeSuscripcion = this.ordenesService.getOrdenesNuevas().subscribe( resp=>{
+      console.log('conectamos')
+    },
+    error => {
+      console.log(error);
+    })    
+
+  }
+  
+
+  ngOnDestroy() {
+    this.mensajeSuscripcion?.unsubscribe();
   }
 
   calcularCostoDeCadaProducto() {
@@ -140,6 +157,7 @@ export class PagosComponent implements OnInit {
     //LLamamos al servicio para pagar
     this.ordenesService.nuevaOrden(data)
     .subscribe( result => {
+
       console.log(result);
     }, error => {
       console.log(error);
