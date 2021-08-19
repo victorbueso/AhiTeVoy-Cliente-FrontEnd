@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,8 @@ export class CoordenadasComponent implements OnInit {
 
   map: mapboxgl.Map | any;
   coordenadas: any;
+  @Input() mostrarPagos: any;
+  @Output() mostrarPago: EventEmitter<boolean> = new EventEmitter;
 
   constructor() { }
 
@@ -52,6 +54,8 @@ export class CoordenadasComponent implements OnInit {
 
   guardarCoordenadas() {
     localStorage.setItem('coordenadas', JSON.stringify(this.coordenadas));
+    console.log(this.mostrarPagos);
+    this.mostrarPago.emit(!this.mostrarPagos);
   }
 
 }

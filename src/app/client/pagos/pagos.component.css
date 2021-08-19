@@ -1,0 +1,12 @@
+tbody > tr:hover {
+    background-color: #FCBF49 !important;
+}
+
+.bg-light {
+    background-color: #F5F6F7 !important;
+}
+
+.btn-primary {
+    background-color: #003049 !important;
+    border: 1px solid #003049 !important;
+}

@@ -1,7 +1,8 @@
 <app-navbar-mobile class="n-mobile" (click)="show()" 
   [mostrarMapa]="mostrarMapa"
   (onNewComponente)="controlarCategoria($event)"
-  (ocultarMapa)="ocultarCoordenadas($event)">
+  (ocultarMapa)="ocultarCoordenadas($event)"
+  (ocultarOpciones)="hiddeOpciones($event)">
 </app-navbar-mobile>
 <app-navbar-desktop class="n-desktop"
   [actualizarCarrito]="actualizarCarrito"
@@ -145,7 +146,8 @@
   </div>
 </ng-template>
 
-<app-coordenadas *ngIf="mostrarMapa" [ngClass]="mostrarMapa == true ? 'd-show' : 'd-none'"></app-coordenadas>
+<app-coordenadas *ngIf="mostrarMapa" [ngClass]="mostrarMapa == true ? 'd-show' : 'd-none'"
+  [mostrarPagos]="mostrarPagos" (mostrarPago)="showPagos($event)"></app-coordenadas>
 
-
+<app-pagos *ngIf="!mostrarMapa && !active"></app-pagos>
 <!--<router-outlet></router-outlet>-->

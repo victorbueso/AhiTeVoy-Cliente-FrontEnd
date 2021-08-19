@@ -13,9 +13,11 @@ export class ProductosService {
   ) { }
 
   obtenerProductosPorEmpresa(codigo: string): Observable<any> {
-    return this.httpClient.get(`${this.url}/prods/${codigo}`);
+    return this.httpClient.get(`${this.url}/categoria/${codigo}`);
   }
 
-
+  /*obtenerProductoconCategoria(): Observable<any> {
+    return this.httpClient.get('/categoria/${}')
+  }*/
 
 }

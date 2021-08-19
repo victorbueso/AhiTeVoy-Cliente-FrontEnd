@@ -13,7 +13,8 @@ export class NavbarMobileComponent implements OnInit {
 
   @Input() mostrarMapa: any;
   @Output() ocultarMapa: EventEmitter<boolean> = new EventEmitter;
-  @Output() onNewComponente: EventEmitter<boolean> = new EventEmitter();
+  @Output() ocultarOpciones: EventEmitter<boolean> = new EventEmitter;
+  @Output() onNewComponente: EventEmitter<boolean> = new EventEmitter;
 
   faBars = faBars;
   faTimes = faTimes;
@@ -51,6 +52,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarHistorialPedidos = false;
     this.mostrarAyuda = false;
     this.ocultarMapa.emit(false);
+    this.ocultarOpciones.emit(false);
     return this.mostrarEditarPerfil = true;
   }
 
@@ -60,6 +62,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarHistorialPedidos = false;
     this.mostrarAyuda = false;
     this.ocultarMapa.emit(false);
+    this.ocultarOpciones.emit(false);
     return this.mostrarPedidoActual = true;
   }
 
@@ -69,6 +72,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarPedidoActual = false;
     this.mostrarAyuda = false;
     this.ocultarMapa.emit(false);
+    this.ocultarOpciones.emit(false);
     return this.mostrarHistorialPedidos = true;
   }
 
@@ -78,6 +82,7 @@ export class NavbarMobileComponent implements OnInit {
     this.mostrarPedidoActual = false;
     this.mostrarHistorialPedidos = false;
     this.ocultarMapa.emit(false);
+    this.ocultarOpciones.emit(false);
     return this.mostrarAyuda = false;
   }
 

@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
   public mostrarEmpresas: boolean = false;
   public mostrarProductos: boolean = false;
   public mostrarMapa: boolean = false;
+  public mostrarPagos: boolean = false;
+  public mostrarPago: boolean = false;
+
+  public ocultarOpciones: any;
 
   public categoriaActual: string = '';
   public noHayEmpresas = `No hay empresas disponibles en esta categoria`;
@@ -57,6 +61,7 @@ export class HomeComponent implements OnInit {
     this.obtenerCategorias();
     this.mostrarCategorias = true;
     this.mostrarMapa = false;
+    this.mostrarPagos = false;
     this.actualizarCarrito = JSON.parse(localStorage.getItem('carrito')!);
   }
 
@@ -104,6 +109,7 @@ export class HomeComponent implements OnInit {
     this.mostrarProductos = false;
     this.mostrarEmpresas = false;
     this.mostrarMapa = false;
+    this.mostrarPagos = false;
     this.mostrarCategorias = true;
   }
 
@@ -111,6 +117,7 @@ export class HomeComponent implements OnInit {
     this.mostrarCategorias = false;
     this.mostrarProductos = false;
     this.mostrarMapa = false;
+    this.mostrarPagos = false;
     this.mostrarEmpresas = true;
     this.empresasService.obtenerEmpresasPorCategoria(codigoCategoria)
       .subscribe( result => {
@@ -126,6 +133,7 @@ export class HomeComponent implements OnInit {
     this.mostrarCategorias = false;
     this.mostrarEmpresas = false;
     this.mostrarMapa = false;
+    this.mostrarPagos = false;
     this.mostrarProductos = true;
     this.productosService.obtenerProductosPorEmpresa(codigoEmpresa)
       .subscribe( result => {
@@ -162,6 +170,8 @@ export class HomeComponent implements OnInit {
       imagenProducto: producto.imagen,
       precio: producto.precio,
       cantidad: this.contador,
+      codigoCategoria: producto.codigoCategoria,
+      comision: producto.categoriaComision[0].comision
     };
     let carrito = [nuevoProducto];
     let exist = carrito.some(producto => producto._id === nuevoProducto._id);
@@ -195,22 +205,31 @@ export class HomeComponent implements OnInit {
 
   verificarCarrito(boton: boolean) {
     this.botonPago = boton;
-    console.log(this.botonPago)
+    //console.log(this.botonPago)
   }
 
   establecerCoordenadas() {
-    console.log(':v');
+    //console.log(':v');
     //this.mostrarCategorias = !this.mostrarCategorias;
     //this.mostrarEmpresas = !this.mostrarEmpresas;
     //this.mostrarProductos = !this.mostrarProductos;
     this.mostrarMapa = true;
-
+    this.mostrarPagos = false;
   }
 
   ocultarCoordenadas(ocultarMapa: any) {
     this.mostrarMapa = ocultarMapa;
   }
 
+  showPagos(event: any) {
+    this.mostrarMapa = false;
+    this.mostrarPagos = event;
+  }
 
+  hiddeOpciones(event: any) {
+    this.ocultarOpciones = event;
+  }
+
+  //TODO: guardar códigoCategoria del producto en localStorage
 
 }
