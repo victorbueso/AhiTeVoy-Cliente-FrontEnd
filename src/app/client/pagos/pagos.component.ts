@@ -137,6 +137,7 @@ export class PagosComponent implements OnInit {
       descripcion: (<HTMLInputElement>document.querySelector('#inputDescripcion')).value,
     }
 
+    //LLamamos al servicio para pagar
     this.ordenesService.nuevaOrden(data)
     .subscribe( result => {
       console.log(result);
