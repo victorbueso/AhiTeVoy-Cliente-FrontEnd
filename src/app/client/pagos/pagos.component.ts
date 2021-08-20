@@ -120,7 +120,7 @@ export class PagosComponent implements OnInit {
     }
     console.log(this.costoProducto);
     this.comisionTotal = comision;
-    console.log(this.comisionTotal);
+    //console.log(this.comisionTotal);
   }
 
   calcularSubtotal(data: any, fn: any) {
@@ -142,7 +142,8 @@ export class PagosComponent implements OnInit {
       pedido.push({
         nombreProducto: this.carritoFinal[i].nombreProducto,
         precio: this.carritoFinal[i].precio,
-        cantidad: this.carritoFinal[i].cantidad
+        cantidad: this.carritoFinal[i].cantidad,
+        comision: this.carritoFinal[i].comision
       })
     }
     

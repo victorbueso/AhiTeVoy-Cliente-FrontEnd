@@ -103,7 +103,7 @@ export class EditarPerfilComponent implements Usuario {
     }
   }
 
-  subirImagen() {
+  actualizarPerfil() {
     let id = this.clientesService.usuario;
 
     let data = {
