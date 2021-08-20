@@ -1,1 +1,97 @@
-<p>editar-perfil works!</p>
+<div class="container">
+    <div class="row">
+        <h1>Mi perfil</h1>
+        <hr>
+        <!--<div class="d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3 mobile">
+            <div class="img-profile">
+                <img class="f-perfil" src="../../../assets/img/home/user.svg" width="100%">
+            </div>
+        </div>-->
+        <div class="d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3 mobile">
+            <div class="form-group row pb-2">
+                <div class="input-group d-flex align-items-center">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div style="background-color: #003049 !important; width: 80px; height: 80px; border-radius: 50%; border-color: none !important;">
+                          <div class="img-profile" *ngIf="imgURL && imgURL !== ''">
+                              <img class="f-perfil" [src]="imgURL" width="100%">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-12 my-2 d-flex justify-content-center custom-file">
+                        <input type="file" #inputProfile class="custom-file-input" accept="image/*" class="form-control d-none" (change)="profilePreview($event)">
+                        <div class="btn btn-primary" style="z-index: 0 !important;" (click)="inputProfile.click()"><fa-icon [icon]="faChevronCircleUp" class="px-1"></fa-icon>Seleccionar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="formProfile" (ngSubmit)="limpiar()">
+        <div class="row py-2">
+          <div class="form-group col-6">
+            <p [ngClass]="{'display-block': nombre}" class="error-message">Nombre no válido</p>
+            <label for="inputName">Nombre</label>
+            <input formControlName="nombre" type="text" class="form-control" id="inputName" placeholder="nombre" required>
+          </div>
+          <div class="form-group col-6">
+            <p [ngClass]="{'display-block': apellido}" class="error-message">Apellido no válido</p>
+            <label for="inputApellido">Apellido</label>
+            <input formControlName="apellido" type="text" class="form-control" placeholder="apellido" id="inputApellido" required>
+          </div>
+        </div>
+        <div class="form-group py-2">
+          <p [ngClass]="{'display-block': direccion}" class="error-message">Dirección no válida</p>
+          <label for="inputDireccion">Dirección</label>
+          <input formControlName="direccion" type="text" class="form-control" placeholder="dirección o referencia" id="inputDireccion" required>
+        </div>
+        <div class="row py-2">
+          <div class="form-group col-6">
+            <p [ngClass]="{'display-block': ciudad}" class="error-message">Disponibilidad no válida</p>
+            <label for="inputCiudad">Ciudad</label>
+            <input formControlName="ciudad" type="text" class="form-control" placeholder="ciudad" id="inputCiudad" required>
+          </div>
+          <div class="form-group col-6">
+            <p [ngClass]="{'display-block': departamento}" class="error-message">Departamento no válido</p>
+            <label for="inputDepartamento">Departamento</label>
+            <input formControlName="departamento" type="text" class="form-control" placeholder="ciudad" id="inputDepartamento" required>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="form-group col-6">
+            <p [ngClass]="{'display-block': tarjetaCredito}" class="error-message">Tarjeta de crédito no válida</p>
+            <label for="inputTarjetaCredito">Tarjeta crédito</label>
+            <input formControlName="tarjetaCredito" type="number" class="form-control" placeholder="número de tarjeta" id="inputTarjetaCredito" required>
+          </div>
+          <div class="form-group col-6">
+            <p [ngClass]="{'display-block': vencimientoTarjeta}" class="error-message">Fecha de nacimiento no válida</p>
+            <label for="inputVencimientoTarjeta">F. vencimiento</label>
+            <input formControlName="vencimientoTarjeta" type="date" class="form-control" id="inputVencimientoTarjeta" [min]="dateToday | date:'yyyy-MM-dd'" placeholder="Insertar fecha" required>
+          </div>
+        </div>
+        <div class="row py-2">
+            <div class="form-group col-6">
+                <p [ngClass]="{'display-block': telefono}" class="error-message">Teléfono no válido</p>
+                <label for="inputTelefono">Teléfono</label>
+                <input formControlName="telefono" type="number" class="form-control" id="inputTelefono" placeholder="teléfono" required>
+            </div>
+            <div class="form-group col-6">
+              <p [ngClass]="{'display-block': cvv}" class="error-message">CVV no válido</p>
+              <label for="inputCVV">CVV</label>
+              <input formControlName="cvv" type="number" class="form-control" placeholder="cvv" id="inputCVV" required>
+            </div>
+        </div>
+      </form>
+
+    <div class="row py-4">
+        <div class="col-6 d-flex justify-content-start">
+            <h6 class="title-producto d-flex align-items-center" routerLink="home">
+                <fa-icon [icon]="faCaretLeft" class="px-2"></fa-icon>Regresar
+            </h6>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary" (click)="subirImagen()" (click)="limpiar()">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>

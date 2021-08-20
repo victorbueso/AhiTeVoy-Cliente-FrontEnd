@@ -1,0 +1,37 @@
+.btn-primary {
+    background-color: #003049 !important;
+    border: 1px solid #003049 !important
+}
+
+.img-profile {
+    position: relative;
+    display: inline-block;
+    border-color: black !important;
+    border-radius: 50% !important;
+    width: 80px !important;
+    height: 80px !important;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+  
+.f-perfil {
+    background-size: auto;
+    border-radius: 50%;
+    margin: 0;
+}
+
+.error-message {
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: fade-in;
+    animation-duration: 1s;
+    display: none;
+    color: red;
+    opacity: 0%;
+    padding: 0;
+    margin: 0;
+}
+  
+.input-error {
+    border-color: red !important;
+}

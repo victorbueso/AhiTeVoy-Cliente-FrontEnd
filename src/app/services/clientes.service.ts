@@ -66,6 +66,25 @@ export class ClientesService {
     localStorage.removeItem('tokenCliente');
   }
 
+  obtenerUsuarioActual(): Observable<any> {
+    return this.httpClient.get(`${this.url}/actual`);
+  }
+
+  actualizarCliente(id: any, data: any): Observable<any> {
+    const fd = new FormData()
+    fd.append('nombre', data.nombre)
+    fd.append('apellido', data.apellido)
+    fd.append('telefono', data.telefono)
+    fd.append('direccion', data.direccion)
+    fd.append('ciudad', data.ciudad)
+    fd.append('departamento', data.departamento)
+    fd.append('tarjetaCredito', data.tarjetaCredito)
+    fd.append('vencimientoTarjeta', data.vencimientoTarjeta)
+    fd.append('cvv', data.cvv)
+    fd.append('imagen', data.imagen)
+    return this.httpClient.put(`${this.url}/${id.uid}`, fd);
+  }
+
 
   /*isClientLogged() {
     if (this.cookieService.get('_id'))
