@@ -25,6 +25,7 @@ export class StatusPedidoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //Llamado de servicio para obtener los estados en tiempo real.
+    console.log(this.orden)
     this.ordenServicio.getEstado().subscribe( res=>{
       this.conversor = res;
       this.orderMap = this.conversor[0];
@@ -76,12 +77,12 @@ export class StatusPedidoComponent implements OnInit, OnDestroy {
     //El marcador se crea al leer el cliente y al nosotros ponerlo como motorista, solo al inicio
     addMarker( marcador: any) {
 
-      const html = `<h5 style="padding-top: 10px;">${marcador.nombre}</h5>`;
+      //const html = `<h5 style="padding-top: 10px;">${marcador.nombre}</h5>`;
   
         const customPopup = new mapboxgl.Popup({
           offset: 25,
           closeOnClick: false
-        }).setHTML( html );
+        })
     
         const marker = new mapboxgl.Marker({
           draggable: true,

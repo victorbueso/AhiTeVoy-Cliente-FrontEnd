@@ -16,6 +16,11 @@ export class NavbarMobileComponent implements OnInit {
   @Output() ocultarOpciones: EventEmitter<boolean> = new EventEmitter;
   @Output() onNewComponente: EventEmitter<boolean> = new EventEmitter;
 
+  usuario = this.clientesService.usuario;
+  nombreClient: string = '';
+  apellidoClient: string = '';
+  correoClient: string = '';
+
   faBars = faBars;
   faTimes = faTimes;
   faSearch = faSearch;
@@ -40,6 +45,12 @@ export class NavbarMobileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.clientesService.obtenerUsuarioActual(this.usuario)
+    .subscribe((result: any) => {
+      this.nombreClient = result.nombre;
+      this.apellidoClient = result.apellido;
+      this.correoClient = result.correo;
+    }, (error: any) => console.log(error))
   }
 
   show() {

@@ -36,6 +36,11 @@ export class NavbarDesktopComponent implements OnInit {
   carrito: Array<any> = [];
   carritoActual: any = {};
 
+  usuario = this.clientesService.usuario;
+  nombreClient: string = '';
+  apellidoClient: string = '';
+  correoClient: string = '';
+
   mostrarHome: boolean = false;
   mostrarEditarPerfil: boolean = false;
   mostrarPedidoActual: boolean = false;
@@ -54,6 +59,13 @@ export class NavbarDesktopComponent implements OnInit {
       this.onEmptyCart.emit(false)
     else
       this.onEmptyCart.emit(true);
+
+    this.clientesService.obtenerUsuarioActual(this.usuario)
+      .subscribe((result: any) => {
+        this.nombreClient = result.nombre;
+        this.apellidoClient = result.apellido;
+        this.correoClient = result.correo;
+      }, (error: any) => console.log(error))
   }
 
   /*show() {

@@ -66,8 +66,8 @@ export class ClientesService {
     localStorage.removeItem('tokenCliente');
   }
 
-  obtenerUsuarioActual(): Observable<any> {
-    return this.httpClient.get(`${this.url}/actual`);
+  obtenerUsuarioActual(id: any): Observable<any> {
+    return this.httpClient.get(`${this.url}/${id.uid}`);
   }
 
   actualizarCliente(id: any, data: any): Observable<any> {

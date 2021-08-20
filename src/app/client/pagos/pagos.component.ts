@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-pagos',
@@ -28,6 +29,7 @@ export class PagosComponent implements OnInit {
   dateToday = new Date();
   successMessage = false;
   successfull = ``;
+  inputDescripcion = '';
 
   carritoFinal: any = [];
   coordenadaFinal: any = {};
@@ -38,18 +40,21 @@ export class PagosComponent implements OnInit {
   total: number = 0;
   costoProducto: any = [];
   mensajeSuscripcion: Subscription | undefined;
+  usuario = this.clientesService.usuario;
+  cliente: string = '';
 
   formPagos: FormGroup = this.fb.group({
     numeroTarjeta: [null, [Validators.required, Validators.minLength(4), Validators.pattern("^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|(?:4[0-9]{12}(?:[0-9]{3})?|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})|6(?:011|5[0-9]{2})[0-9]{12}$")]],
     fechaVencimiento: [null, [Validators.required, Validators.pattern("")]],
     cvv: [null, [Validators.required, Validators.pattern("^[0-9]{3,4}$")]],
-    descripcion: [null, [Validators.pattern("([a-záéíóúñ][A-ZÁÉÍÓÚÑ])|([a-záéíóúñ])|([A-ZÁÉÍÓÚÑ])|([A-ZÁÉÍÓÚÑ][a-záéíóúñ])+\\s[\w!@#$%^&'\"*\(\)\[\]\{\};\?¿¡:=\-\~,./\.<>?\|¨`´´°\¬\\_+]")]],
+    descripcion: ["ninguno", [Validators.required]],
   })
 
   constructor(
     private modal: NgbModal,
     private fb: FormBuilder,
     private ordenesService: OrdenesService,
+    private clientesService: ClientesService,
   ) { }
 
   open(content: any) {
@@ -118,7 +123,7 @@ export class PagosComponent implements OnInit {
         costo: multiplicar,
       });
     }
-    console.log(this.costoProducto);
+    //console.log(this.costoProducto);
     this.comisionTotal = comision;
     //console.log(this.comisionTotal);
   }
@@ -137,46 +142,61 @@ export class PagosComponent implements OnInit {
   }
 
   pagar() {
-    let pedido = [];
-    for (let i=0; i<this.carritoFinal.length; i++) {
-      pedido.push({
+    
+
+    this.clientesService.obtenerUsuarioActual(this.usuario)
+    .subscribe((result: any) => {
+      console.log(result)
+      
+      this.cliente = result.nombre +' '+ result.apellido;
+      let pedido = [];
+      for (let i=0; i<this.carritoFinal.length; i++) {
+        pedido.push({
         nombreProducto: this.carritoFinal[i].nombreProducto,
         precio: this.carritoFinal[i].precio,
         cantidad: this.carritoFinal[i].cantidad,
         comision: this.carritoFinal[i].comision
       })
+      let data = {
+        pedido: pedido,
+        cliente: this.cliente,
+        destinoMapa: this.coordenadaFinal,
+        statusOrden: 0,
+        tomada: false,
+        entregada: false,
+        descripcion: this.inputDescripcion,
+      }
+      console.log(data)
+      //LLamamos al servicio para pagar
+      this.ordenesService.nuevaOrden(data)
+      .subscribe( result => {
+
+        //Entramos a la sala
+        this.ordenesService.entraOrden({nameRoom: result._id} )
+
+        //Actualizamos a todos lo motoristas
+        this.ordenesService.ordenTomada({nameRoom: 'Ordenes'});
+
+        //Emitimos toda la orden al visor de status
+        this.onOrden.emit(result);
+        //console.log(result);
+        this.verStatus.emit(!this.mostrarStatus);
+        this.changePagosStatus = true;
+
+        let eliminarCarrito = JSON.parse(localStorage.getItem('carrito')!);
+        let eliminarCoordenada = JSON.parse(localStorage.getItem('coordenadas')!);
+        eliminarCarrito = []
+        eliminarCoordenada = []
+        localStorage.setItem('carrito', JSON.stringify(eliminarCarrito));
+        localStorage.setItem('coordenadas', JSON.stringify(eliminarCoordenada));
+        //localStorage.removeItem('carrito');
+        //localStorage.removeItem('coordenadas');
+        this.limpiar()
+      }, error => {
+        console.log(error);
+      })
     }
-    
-    let data = {
-      pedido: pedido,
-      destinoMapa: this.coordenadaFinal,
-      statusOrden: 0,
-      tomada: false,
-      entregada: false,
-      descripcion: (<HTMLInputElement>document.querySelector('#inputDescripcion')).value,
-    }
-
-    //LLamamos al servicio para pagar
-    this.ordenesService.nuevaOrden(data)
-    .subscribe( result => {
-
-      //Entramos a la sala
-      this.ordenesService.entraOrden({nameRoom: result._id} )
-
-      //Actualizamos a todos lo motoristas
-      this.ordenesService.ordenTomada({nameRoom: 'Ordenes'});
-
-      //Emitimos toda la orden al visor de status
-      this.onOrden.emit(result);
-      console.log(result);
-      this.verStatus.emit(!this.mostrarStatus);
-      this.changePagosStatus = true;
-      localStorage.removeItem('carrito');
-      localStorage.removeItem('coordenadas');
-    }, error => {
-      console.log(error);
-    })
-
+    }, (error: any) => console.log(error))
   }
 
 

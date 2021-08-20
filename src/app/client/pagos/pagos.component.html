@@ -86,7 +86,7 @@
     </div>
     <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
       <!--<ngb-alert type="success" class="mt-1" *ngIf="successMessage">{{ successfull }}</ngb-alert>-->
-      <form [formGroup]="formPagos" (ngSubmit)="limpiar()">
+      <form [formGroup]="formPagos" (ngSubmit)="pagar()">
         <div class="form-group py-2" style="margin-bottom: 0px; padding-bottom: 0px;">
           <label for="inputNumeroTarjeta">Tarjeta de crédito</label>
           <input formControlName="numeroTarjeta" type="text" class="form-control" id="inputNumeroTarjeta" placeholder="visa, mastercard, discover" required>
@@ -106,13 +106,12 @@
         </div>
         <div class="form-group py-2" style="margin-bottom: 0px; padding-bottom: 0px;">
             <label for="inputDescripcion">Descripción adicional</label>
-            <input formControlName="descripcion" type="text" class="form-control" id="inputDescripcion" placeholder="p.e. tocar timbre, recibirá Juana" required>
-            <p [ngClass]="{'display-block': descripcion}" class="error-message">Descripción adicional no válida</p>
+            <input name='inputDescripcion' formControlName="descripcion" type="text" class="form-control" [(ngModel)]="inputDescripcion" placeholder="p.e. tocar timbre, recibirá Juana" required>
           </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button [disabled]="formPagos.invalid" type="submit" class="btn btn-primary" (click)="pagar()" (click)="SuccessfullMessage()" (click)="limpiar()" (click)="modal.close()">      
+      <button [disabled]="formPagos.invalid" type="submit" class="btn btn-primary" (click)="SuccessfullMessage()" (click)="modal.close()">      
         Confirmar pago
       </button>
       <button type="button" class="btn btn-outline-danger mr-2" (click)="modal.close()" (click)="limpiar()">Cancelar</button>
