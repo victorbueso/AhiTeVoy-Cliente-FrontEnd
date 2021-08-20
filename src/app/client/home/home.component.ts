@@ -225,11 +225,13 @@ export class HomeComponent implements OnInit {
   ocultarCoordenadas(ocultarMapa: boolean) {
     this.mostrarMapa = ocultarMapa;
     this.mostrarPagos = false;
+    this.mostrarStatus = false;
   }
 
   showPagos(event: any) {
     this.active = false
     this.mostrarMapa = false;
+    this.mostrarStatus = false;
     this.mostrarPagos = true;
   }
 
@@ -240,7 +242,7 @@ export class HomeComponent implements OnInit {
   showStatus(event: any) {
     this.mostrarPagos = false;
     this.mostrarMapa = false;
-    this.mostrarStatus = event;
+    this.mostrarStatus = true;
   }
 
 
