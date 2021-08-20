@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!changePagosStatus">
     <div class="row my-1">
         <h2 class="text-center">¡Confirma tu compra!</h2>
     </div>
@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<div class="container table-responsive my-4">
+<div class="container table-responsive my-4" *ngIf="!changePagosStatus">
     <table class="table table-sm mx-auto col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <thead>
             <tr>
@@ -28,7 +28,7 @@
     </table>
 </div>
 
-<div class="container" style="background-color: #FCBF49; width: 90vw;">
+<div class="container" style="background-color: #FCBF49; width: 90vw;" *ngIf="!changePagosStatus">
     <div class="row px-2 py-1">
         <h4>Detalles del pago</h4>
         <hr>
@@ -67,7 +67,7 @@
     </div>
 </div>
 
-<div class="container d-flex justify-content-center my-4 pb-4">
+<div class="container d-flex justify-content-center my-4 pb-4" *ngIf="!changePagosStatus">
     <div class="col-4 d-flex justify-content-start">
         <h6 class="title-producto d-flex align-items-center" routerLink="map">
             <fa-icon [icon]="faCaretLeft" class="px-2"></fa-icon>Regresar
@@ -112,80 +112,15 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button [disabled]="formPagos.invalid" type="submit" class="btn btn-primary" (click)="pagar()" (click)="SuccessfullMessage()" (click)="limpiar()">      
+      <button [disabled]="formPagos.invalid" type="submit" class="btn btn-primary" (click)="pagar()" (click)="createMapa()" (click)="SuccessfullMessage()" (click)="limpiar()">      
         Confirmar pago
       </button>
       <button type="button" class="btn btn-outline-danger mr-2" (click)="modal.close()" (click)="limpiar()">Cancelar</button>
     </div>
 </ng-template>
 
-<!-- Pantalla modal con formulario para crear publicaciones -->
-<!--<ng-template #transaccion let-modal>
-    <div class="modal-header">
-      <h2 class="modal-title mb-0">Ingrese los datos para realizar el pago y confirmar la orden</h2>
-      <button class="btn btn-sm close" aria-label="close" type="button" (click)="modal.dismiss()" (click)="limpiar()">
-        <span aria-hidden="true" style="font-size: 20px;">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
-      <!--<ngb-alert type="success" class="mt-1" *ngIf="successMessage">{{ successfull }}</ngb-alert>
-      <form [formGroup]="formPagos" (ngSubmit)="limpiar()">
-        <div class="form-row d-flex py-2">
-          <div class="form-group col-7 text-center pl-auto">
-            <p [ngClass]="{'display-block': nombreProducto}" class="error-message">Nombre de producto no válido</p>
-            <label for="inputNameProduct">Producto</label>
-            <input formControlName="nombreProducto" type="text" class="form-control" id="inputNameProduct" placeholder="nombre" required>
-          </div>
-          <div class="form-group col-5 text-center">
-            <p [ngClass]="{'display-block': codigoProducto}" class="error-message">Código de producto no válido</p>
-            <label for="inputCodProducto">Cod. Producto</label>
-            <input formControlName="codigoProducto" type="text" class="form-control" placeholder="ejem. maskn95" id="inputCodProducto" required>
-          </div>
-        </div>
-        <div class="form-group py-2 text-center">
-          <p [ngClass]="{'display-block': descripcionProducto}" class="error-message">Descripción no válida</p>
-          <label for="inputDesProd">Descripción</label>
-          <input formControlName="descripcionProducto" type="text" class="form-control" placeholder="descripción" id="inputDesProd" required>
-        </div>
-        <div class="form-row d-flex py-2">
-          <div class="form-group col-md-4 text-center">
-            <p [ngClass]="{'display-block': disponible}" class="error-message">Disponibilidad no válida</p>
-            <label for="inputDesponible">¿Disponible?</label>
-            <input formControlName="disponible" type="number" class="form-control" placeholder="0: no, 1: si" id="inputDesponible" required>
-          </div>
-          <div class="form-group col-md-4 text-center">
-            <p [ngClass]="{'display-block': precio}" class="error-message">Valor ingresado no válido</p>
-            <label for="inputPrecios">Precio</label>
-            <input formControlName="precio" type="number" class="form-control" placeholder="(en Lempiras)" id="inputPrecios" required>
-          </div>
-          <div class="form-group col-md-4 text-center">
-            <p [ngClass]="{'display-block': codigoEmpProd}" class="error-message">Código de Empresa no válido</p>
-            <label for="inputCodEmpresa">Cod. Emp.</label>
-            <input formControlName="codigoEmpProd" type="text" class="form-control" placeholder="ejem. pchick" id="inputCodEmpresa" required>
-          </div>
-        </div>
-      </form>
-      <div class="form-group row pb-2">
-        <label class="col-sm-4 col-form-label">Añadir una imagen</label>
-        <div class="input-group col-sm-8 d-flex align-items-center">
-          <div class="custom-file">
-            <input type="file" #inputProduct class="custom-file-input" accept="image/*" class="form-control d-none" (change)="productPreview($event)">
-            <div class="btn btn-primary" (click)="inputProduct.click()"><fa-icon [icon]="faChevronCircleUp" class="px-1"></fa-icon>Seleccionar</div>
-          </div>
-          <div class="col-md-4 mx-3">
-            <div style="background-color: #F5F6F7; width: 50px; height: 50px;">
-              <div *ngIf="imgURL && imgURL !== ''">
-                  <img [src]="imgURL" style="width: 50px; height: 50px;">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" (click)="subirImagen()" (click)="SuccessfullMessage()" (click)="limpiar()">
-        Agregar
-      </button>
-      <button type="button" class="btn btn-outline-danger mr-2" (click)="modal.close()" (click)="limpiar()">Cancelar</button>
-    </div>
-  </ng-template>-->
+<!-- Mapa de estados de la orden -->
+
+<div class="d-flex justify-content-center my-3" *ngIf="changePagosStatus">
+    <div class="row" id="map-mapbox"></div>
+</div>

@@ -50,7 +50,7 @@ export class NavbarDesktopComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (JSON.parse(localStorage.getItem('carrito')!).length == 0)
+    if (JSON.parse(localStorage.getItem('carrito')!).length == 0 || JSON.parse(localStorage.getItem('carrito')!) == null)
       this.onEmptyCart.emit(false)
     else
       this.onEmptyCart.emit(true);

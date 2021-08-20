@@ -1,9 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrdenesService } from 'src/app/services/ordenes.service';
 import { Subscription } from 'rxjs';
+
+import * as mapboxgl from 'mapbox-gl';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pagos',
@@ -11,6 +14,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pagos.component.css']
 })
 export class PagosComponent implements OnInit {
+
+  @ViewChild('mapElement') mapElement!: ElementRef;
+
+  @Input() mostrarStatus: any;
+  @Output() verStatus: EventEmitter<boolean> = new EventEmitter;
+
+  changePagosStatus: boolean = false;
+  map: mapboxgl.Map | any;
+  mapbox = (mapboxgl as typeof mapboxgl)
 
   faCaretLeft = faCaretLeft;
   closeResult = ``;
@@ -90,9 +102,7 @@ export class PagosComponent implements OnInit {
     this.calcularCostoDeCadaProducto();
     this.subtotal = Number(this.calcularSubtotal(this.costoProducto, 'costo'));
     this.ISV = this.subtotal * 0.15;
-    this.total = this.subtotal + this.ISV + this.comisionTotal
-
-     
+    this.total = this.subtotal + this.ISV + this.comisionTotal;
 
   }
   
@@ -156,8 +166,44 @@ export class PagosComponent implements OnInit {
       //Actualizamos a todos lo motoristas
       this.ordenesService.ordenTomada({nameRoom: 'Ordenes'});
       console.log(result);
+      this.verStatus.emit(!this.mostrarStatus);
+      this.changePagosStatus = true;
+      localStorage.removeItem('carrito');
+      localStorage.removeItem('coordenadas');
     }, error => {
       console.log(error);
+    })
+
+  }
+
+  createMapa() {
+    (mapboxgl as typeof mapboxgl).accessToken = environment.mapboxKey;
+    this.map = new mapboxgl.Map({
+      container: 'map-mapbox',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-87.1658053, 14.0856818],
+      zoom: 14
+    });
+
+    this.createMarker(-87.1658053, 14.0856818);
+  }
+
+  createMarker(lng: number, lat: number) {
+    const popup = new mapboxgl.Popup({
+      offset: 25
+    })
+    .setHTML('<h5>Ubicación destino:</h5><p>La orden se enviará a este lugar</p>')
+
+    const marker = new mapboxgl.Marker({
+      draggable: true,
+      color: `#${Math.floor(Math.random()*16777215).toString(16)}`
+    })
+    .setLngLat([lng, lat])
+    .setPopup(popup)
+    .addTo(this.map);
+
+    marker.on('dragend', () => {
+      console.log(marker.getLngLat());
     })
   }
 

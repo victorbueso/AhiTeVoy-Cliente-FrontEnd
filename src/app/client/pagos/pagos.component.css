@@ -1,3 +1,14 @@
+html, body {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#map-mapbox {
+    width: 80vw;
+    height: 55vh;
+    background-color: #f5f6f7;
+}
+
 tbody > tr:hover {
     background-color: #FCBF49 !important;
 }
@@ -21,8 +32,8 @@ tbody > tr:hover {
     opacity: 0%;
     padding: 0;
     margin: 0;
-  }
-  
-  .input-error {
+}
+
+.input-error {
     border-color: red !important;
-  }
+}

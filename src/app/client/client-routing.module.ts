@@ -8,6 +8,7 @@ import { PedidoActualComponent } from './pedido-actual/pedido-actual.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { CoordenadasComponent } from './coordenadas/coordenadas.component';
 import { PagosComponent } from './pagos/pagos.component';
+import { StatusPedidoComponent } from './status-pedido/status-pedido.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'error', component: ErrorPageComponent },
       { path: 'map', component: CoordenadasComponent },
       { path: 'pay', component: PagosComponent },
+      { path: 'status', component: StatusPedidoComponent },
       { path: '**', redirectTo: '' },
     ]
   },

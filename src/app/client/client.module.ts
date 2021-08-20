@@ -17,6 +17,7 @@ import { VerProductosComponent } from './ver-productos/ver-productos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { CoordenadasComponent } from './coordenadas/coordenadas.component';
 import { PagosComponent } from './pagos/pagos.component';
+import { StatusPedidoComponent } from './status-pedido/status-pedido.component';
 
 import { SocketService } from '../services/socket.service';
 import { OrdenesService } from '../services/ordenes.service';
@@ -35,7 +36,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     VerProductosComponent,
     AyudaComponent,
     CoordenadasComponent,
-    PagosComponent
+    PagosComponent,
+    StatusPedidoComponent
   ],
   imports: [
     CommonModule,

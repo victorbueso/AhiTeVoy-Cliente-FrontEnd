@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   public mostrarMapa: boolean = false;
   public mostrarPagos: boolean = false;
   public mostrarPago: boolean = false;
+  public mostrarStatus: boolean = false;
 
   public ocultarOpciones: any;
 
@@ -110,6 +111,7 @@ export class HomeComponent implements OnInit {
     this.mostrarEmpresas = false;
     this.mostrarMapa = false;
     this.mostrarPagos = false;
+    this.mostrarStatus = false;
     this.mostrarCategorias = true;
   }
 
@@ -118,6 +120,7 @@ export class HomeComponent implements OnInit {
     this.mostrarProductos = false;
     this.mostrarMapa = false;
     this.mostrarPagos = false;
+    this.mostrarStatus = false;
     this.mostrarEmpresas = true;
     this.empresasService.obtenerEmpresasPorCategoria(codigoCategoria)
       .subscribe( result => {
@@ -134,6 +137,7 @@ export class HomeComponent implements OnInit {
     this.mostrarEmpresas = false;
     this.mostrarMapa = false;
     this.mostrarPagos = false;
+    this.mostrarStatus = false;
     this.mostrarProductos = true;
     this.productosService.obtenerProductosPorEmpresa(codigoEmpresa)
       .subscribe( result => {
@@ -232,6 +236,10 @@ export class HomeComponent implements OnInit {
     this.ocultarOpciones = event;
   }
 
-  //TODO: guardar códigoCategoria del producto en localStorage
+  showStatus(event: any) {
+    this.mostrarPagos = false;
+    this.mostrarMapa = false;
+    this.mostrarStatus = event;
+  }
 
 }
