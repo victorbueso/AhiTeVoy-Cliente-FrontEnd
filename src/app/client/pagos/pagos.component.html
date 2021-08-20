@@ -112,15 +112,11 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button [disabled]="formPagos.invalid" type="submit" class="btn btn-primary" (click)="pagar()" (click)="createMapa()" (click)="SuccessfullMessage()" (click)="limpiar()">      
+      <button [disabled]="formPagos.invalid" type="submit" class="btn btn-primary" (click)="pagar()" (click)="SuccessfullMessage()" (click)="limpiar()" (click)="modal.close()">      
         Confirmar pago
       </button>
       <button type="button" class="btn btn-outline-danger mr-2" (click)="modal.close()" (click)="limpiar()">Cancelar</button>
     </div>
 </ng-template>
 
-<!-- Mapa de estados de la orden -->
 
-<div class="d-flex justify-content-center my-3" *ngIf="changePagosStatus">
-    <div class="row" id="map-mapbox"></div>
-</div>

@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   faPlus = faPlus;
   faCaretLeft = faCaretLeft;
   closeResult = '';
+  ordenStatus: any = {};
 
   detalleProductoActual!: any;
   contador: number = 1;
@@ -224,11 +225,13 @@ export class HomeComponent implements OnInit {
   ocultarCoordenadas(ocultarMapa: boolean) {
     this.mostrarMapa = ocultarMapa;
     this.mostrarPagos = false;
+    this.mostrarStatus = false;
   }
 
   showPagos(event: any) {
     this.active = false
     this.mostrarMapa = false;
+    this.mostrarStatus = false;
     this.mostrarPagos = true;
   }
 
@@ -239,7 +242,16 @@ export class HomeComponent implements OnInit {
   showStatus(event: any) {
     this.mostrarPagos = false;
     this.mostrarMapa = false;
-    this.mostrarStatus = event;
+    this.mostrarStatus = true;
+  }
+
+
+  irStatus( order: any ){
+    this.mostrarPagos = false;
+    this.mostrarMapa = false;
+    this.mostrarStatus = true;
+    this.ordenStatus = order;
+
   }
 
 }

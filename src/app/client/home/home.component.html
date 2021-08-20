@@ -150,5 +150,10 @@
 <app-coordenadas *ngIf="mostrarMapa" [ngClass]="mostrarMapa == true ? 'd-show' : 'd-none'"
   [mostrarPagos]="mostrarPagos" (mostrarPago)="showPagos($event)"></app-coordenadas>
 
-<app-pagos *ngIf="mostrarPagos"></app-pagos>
+<app-pagos (onOrden)="irStatus($event)" *ngIf="mostrarPagos"></app-pagos>
+
+<!-- TODO aqui vamos a meter el componente el cual se mostrara con evento de app-pagos -->
+<app-status-pedido [orden]="ordenStatus" *ngIf="mostrarStatus" ></app-status-pedido>
+
+
 <!--<router-outlet></router-outlet>-->
