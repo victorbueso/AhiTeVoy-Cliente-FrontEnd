@@ -43,6 +43,13 @@ export class OrdenesService {
   getEstado() {
       return this.socket.listen('estado');
   }
+
+  //Escuchamos el marcador creado
+  getPosicionMotorista() {
+      return this.socket.listen('posicion-motorista');
+  }
+
+  //Escuchamos las coordenadas
   
   //Emitimos conexion al logear.
   loginWS( email: string ) {
