@@ -1,1 +1,24 @@
-<p>status-pedido works!</p>
+<div id="map" #asMap class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 mb-3" 
+    style="margin-right: auto; margin-left: auto; height: 400px !important;" >
+</div>
+<div>
+    <h3>Este es tu estado de orden</h3>
+    <div *ngIf="orderMap.statusOrden == 0">
+        <h5> Orden tomada </h5>
+    </div>
+    <div *ngIf="orderMap.statusOrden == 1">
+        <h5> En el origen </h5>
+    </div>
+    <div *ngIf="orderMap.statusOrden == 2">
+        <h5> En camino </h5>
+    </div>
+    <div *ngIf="orderMap.statusOrden == 3">
+        <h5> Finalizada </h5>
+    </div>
+</div>
+
+<div *ngIf="orderMap.statusOrden == 3 && orderMap.statusOrden == 4">
+    <button class="btn btn-primary">
+        Volver a pantalla principal
+    </button>
+</div>

@@ -39,8 +39,12 @@ export class OrdenesService {
     this.socket.emit('estado', payload);
   }
 
+  //Escuchamos el estado de la orden
+  getEstado() {
+      return this.socket.listen('estado');
+  }
   
-    //Emitimos conexion al logear.
+  //Emitimos conexion al logear.
   loginWS( email: string ) {
     this.socket.emit('configurar-usuario', email, (resp: any) => {
         console.log(resp);

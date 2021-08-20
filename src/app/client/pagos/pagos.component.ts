@@ -19,10 +19,9 @@ export class PagosComponent implements OnInit {
 
   @Input() mostrarStatus: any;
   @Output() verStatus: EventEmitter<boolean> = new EventEmitter;
+  @Output() onOrden: EventEmitter<boolean> = new EventEmitter;
 
   changePagosStatus: boolean = false;
-  map: mapboxgl.Map | any;
-  mapbox = (mapboxgl as typeof mapboxgl)
 
   faCaretLeft = faCaretLeft;
   closeResult = ``;
@@ -165,6 +164,9 @@ export class PagosComponent implements OnInit {
 
       //Actualizamos a todos lo motoristas
       this.ordenesService.ordenTomada({nameRoom: 'Ordenes'});
+
+      //Emitimos toda la orden al visor de status
+      this.onOrden.emit(result);
       console.log(result);
       this.verStatus.emit(!this.mostrarStatus);
       this.changePagosStatus = true;
@@ -176,35 +178,7 @@ export class PagosComponent implements OnInit {
 
   }
 
-  createMapa() {
-    (mapboxgl as typeof mapboxgl).accessToken = environment.mapboxKey;
-    this.map = new mapboxgl.Map({
-      container: 'map-mapbox',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-87.1658053, 14.0856818],
-      zoom: 14
-    });
 
-    this.createMarker(-87.1658053, 14.0856818);
-  }
 
-  createMarker(lng: number, lat: number) {
-    const popup = new mapboxgl.Popup({
-      offset: 25
-    })
-    .setHTML('<h5>Ubicación destino:</h5><p>La orden se enviará a este lugar</p>')
-
-    const marker = new mapboxgl.Marker({
-      draggable: true,
-      color: `#${Math.floor(Math.random()*16777215).toString(16)}`
-    })
-    .setLngLat([lng, lat])
-    .setPopup(popup)
-    .addTo(this.map);
-
-    marker.on('dragend', () => {
-      console.log(marker.getLngLat());
-    })
-  }
 
 }

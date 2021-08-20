@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   faPlus = faPlus;
   faCaretLeft = faCaretLeft;
   closeResult = '';
+  ordenStatus: any = {};
 
   detalleProductoActual!: any;
   contador: number = 1;
@@ -240,6 +241,15 @@ export class HomeComponent implements OnInit {
     this.mostrarPagos = false;
     this.mostrarMapa = false;
     this.mostrarStatus = event;
+  }
+
+
+  irStatus( order: any ){
+    this.mostrarPagos = false;
+    this.mostrarMapa = false;
+    this.mostrarStatus = true;
+    this.ordenStatus = order;
+
   }
 
 }
