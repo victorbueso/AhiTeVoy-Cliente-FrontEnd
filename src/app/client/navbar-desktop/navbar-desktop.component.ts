@@ -40,6 +40,7 @@ export class NavbarDesktopComponent implements OnInit {
   nombreClient: string = '';
   apellidoClient: string = '';
   correoClient: string = '';
+  imgPerfil: string = '';
 
   mostrarHome: boolean = false;
   mostrarEditarPerfil: boolean = false;
@@ -65,6 +66,7 @@ export class NavbarDesktopComponent implements OnInit {
         this.nombreClient = result.nombre;
         this.apellidoClient = result.apellido;
         this.correoClient = result.correo;
+        this.imgPerfil = result.fotoPerfil;
       }, (error: any) => console.log(error))
   }
 

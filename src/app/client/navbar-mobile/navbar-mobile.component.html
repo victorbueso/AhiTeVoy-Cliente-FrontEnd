@@ -21,7 +21,7 @@
     <div class="row px-2 d-flex justify-content-center">
       <div class="col-3 d-flex align-items-center">
         <div class="img-profile">
-          <img class="f-perfil" src="../../../assets/img/home/gohan.jpg" width="45" alt="">
+          <img class="f-perfil" [src]="imgPerfil != '' ? 'http://localhost:3000/'+imgPerfil : '../../../assets/img/home/gohan.jpg'" width="45" alt="">
         </div>
         <!--<div class="mx-2" style="background: url('../../../assets/img/home/profile-icon.png'); width: 40px; height: 40px; background-size: cover;"></div>-->
       </div>

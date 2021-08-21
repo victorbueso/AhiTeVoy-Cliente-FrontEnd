@@ -20,6 +20,7 @@ export class NavbarMobileComponent implements OnInit {
   nombreClient: string = '';
   apellidoClient: string = '';
   correoClient: string = '';
+  imgPerfil: string = '';
 
   faBars = faBars;
   faTimes = faTimes;
@@ -50,6 +51,7 @@ export class NavbarMobileComponent implements OnInit {
       this.nombreClient = result.nombre;
       this.apellidoClient = result.apellido;
       this.correoClient = result.correo;
+      this.imgPerfil = result.fotoPerfil;
     }, (error: any) => console.log(error))
   }
 
